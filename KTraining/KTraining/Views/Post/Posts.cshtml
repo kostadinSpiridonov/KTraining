@@ -1,0 +1,67 @@
+﻿@model KTraining.Models.CoursePostsViewModel
+@{
+    ViewBag.Title = @Model.Name;
+}
+
+    
+<script src="~/Scripts/jquery.autosize.js"></script>
+
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.Name</h1>
+    </div>
+    @if (User.IsInRole("Student"))
+    {
+        @Html.Partial("~/Views/Course/NavbarStudent.cshtml", Model.Id)
+    }
+    else if (User.IsInRole("Teacher"))
+    {
+        @Html.Partial("~/Views/Course/NavbarTeacher.cshtml", Model.Id)
+    }
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                @using (Html.BeginForm("AddPost", "Post", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row row-centered ">
+                        <div class="padding-left-none col-xs-12 col-centered col-fixed">
+                            <div class="col-md-10 padding-left-none textareaContainer">
+                                <textarea placeholder="@KTraining.Resources.Views.Common.WriteYourPost" class="input-post animated " name="Content"></textarea>
+                            </div>
+                            <div class="col-md-2 post-button-container">
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Post" class="btn btn-primary post-button" />
+                            </div>
+                            <input type="hidden" name="CourseId" value="@Model.Id" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <div class="row row-centered">
+                    @foreach (var item in Model.Posts)
+                    {
+                        <div class="col-xs-12 col-centered col-fixed post-panel ">
+                            <div>
+                                 <a href="/User/UserDetails/@item.UserId">
+                                     <h4>@item.User.FirstName @item.User.SecondName @item.User.LastName</h4>
+                                 </a>
+                            </div>
+                            <div class="margin-content">
+                                @Html.Raw(@item.Content)
+                            </div>
+                            <div>
+                                @item.Date.ToShortDateString()
+                            </div>
+                        </div>
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/Post.css" rel="stylesheet" />

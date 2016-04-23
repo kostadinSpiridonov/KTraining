@@ -1,0 +1,30 @@
+﻿
+@model KTraining.Models.CourseDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>  
+     @Html.Partial("~/Views/Course/NavbarCompleted.cshtml", Model.Id)
+    <div class="row">
+        <div class="col-md-6">
+            <h4>@KTraining.Resources.Views.Common.Leader:</h4>
+            <div>
+                <a href="/User/UserDetails/@Model.Teacher.ApplicationUserId">
+                    @Model.Teacher.ApplicationUser.FirstName @Model.Teacher.ApplicationUser.SecondName @Model.Teacher.ApplicationUser.LastName
+                </a>
+            </div>
+            <br />
+            <div><h4>@KTraining.Resources.Views.Common.NumOfParticipants: @Model.CountParticipants</h4></div>
+        </div>
+        <div class="col-md-6">
+            <h3>@KTraining.Resources.Views.Common.Description:</h3>
+            <div>@Html.Raw(Model.Description)</div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/CourseDetails.css" rel="stylesheet" />

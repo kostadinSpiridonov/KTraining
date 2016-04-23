@@ -1,0 +1,12 @@
+﻿@model KTraining.Models.ResultViewModel
+@{
+    ViewBag.Title = "Result";
+}
+
+<br />
+<br />
+<h2>@KTraining.Resources.Views.Test.CompleteTest @Model.Description</h2>
+<div>
+    @KTraining.Resources.Views.Question.CorrectAnss: @Model.CorrectAnswers
+    <br />  @KTraining.Resources.Views.Common.Mark: @Model.Grade
+</div>

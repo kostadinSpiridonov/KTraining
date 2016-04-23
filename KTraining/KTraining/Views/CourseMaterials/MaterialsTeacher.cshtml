@@ -1,0 +1,29 @@
+﻿@model KTraining.Models.ShowMaterials
+@{
+    ViewBag.Title = "Materials";
+}
+
+
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>    @Html.Partial("~/Views/Course/NavbarTeacher.cshtml", Model.Id)
+    <h3>@KTraining.Resources.Views.Common.Materials</h3>
+    <br />
+    @Html.Partial("UploadMaterial", @Model.Id)
+    <br />
+    <div class="row">
+        @foreach (var item in Model.Materials)
+        {
+            <div class="col-lg-4 panel panel-default material-panel ">
+                <img src="~/Content/Document-Blank-icon.png" height="38" class="pull-left"/>
+                <span class="overflow">@item.Name</span>
+                <div class="pull-right">
+                    <a class="btn btn-primary pull-right material-button" href="@item.Source" target="_blank">@KTraining.Resources.Views.Common.Download</a>
+                    <a class="btn btn-primary pull-right delete-button" href="/CourseMaterials/DeleteFile/@item.Id" >@KTraining.Resources.Views.Common.Remove</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<link href="~/Content/Styles/CourseMaterials.css" rel="stylesheet" />

@@ -1,0 +1,84 @@
+﻿@model KTraining.Models.UnsolvedTestsViewModel
+@{
+    ViewBag.Title = "Unsolved tests";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h2>@KTraining.Resources.Views.Test.CheckedSys</h2>
+        </div>
+        <br />
+        <div class="row">
+            @if (Model.AutomaticTests.Count != 0)
+            { 
+                for (int i = 0; i < Model.AutomaticTests.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <div class="col-md-9">
+                            <a href="/Post/Posts/@Model.AutomaticTests[i].CourseId"><h2>@Model.AutomaticTests[i].Course.Name</h2></a>
+                        </div>
+                    }
+                    else if (Model.AutomaticTests[i].Course.Name != Model.AutomaticTests[i - 1].Course.Name)
+                    {
+                        <div class="col-md-9">
+                            <a href="/Post/Posts/@Model.AutomaticTests[i].CourseId"><h2>@Model.AutomaticTests[i].Course.Name</h2></a>
+                        </div>
+
+                    }
+                    <div class="col-md-9 panel panel-default material-panel">
+                        <div class="row row-modifed">
+                            <span class="margin-span-content col-xs-9 font-size-20"> @Model.AutomaticTests[i].Test.Title</span>
+                            @using (Html.BeginForm("StartTest", "AutomaticTestStudent", FormMethod.Post, new { @class = "" }))
+                            {
+                                <input type="hidden" name="id" value="@Model.AutomaticTests[i].Id" />
+                                @Html.AntiForgeryToken()
+                                <input type="submit" value="@KTraining.Resources.Views.Test.Solve" class="display-inline btn btn-primary pull-right solve-button col-md-2" />
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <h2>@KTraining.Resources.Views.Test.CheckedLeader</h2>
+        </div>
+        <br />
+        <div class="row">
+            @if (Model.ManualTests.Count != 0)
+            { 
+               for (int i = 0; i < Model.ManualTests.Count; i++)
+               {
+                   if (i == 0)
+                   {
+                    <div class="col-md-9">
+                        <a href="/Post/Posts/@Model.ManualTests[i].CourseId"><h2>@Model.ManualTests[i].Course.Name</h2></a>
+                    </div>
+                   }
+                   else if (Model.ManualTests[i].Course.Name != Model.ManualTests[i - 1].Course.Name)
+                   {
+                    <div class="col-md-9">
+                        <a href="/Post/Posts/@Model.ManualTests[i].CourseId"><h2>@Model.ManualTests[i].Course.Name</h2></a>
+                    </div>
+                   }
+                <div class="col-md-9 panel panel-default material-panel">
+                    <div class="row row-modifed">
+                        <span class="col-xs-9 font-size-20 margin-span-content"> @Model.ManualTests[i].Test.Title</span>
+                        @using (Html.BeginForm("StartTest", "ManualTestStudent", FormMethod.Post, new { @class = "" }))
+                        {
+                            <input type="hidden" name="id" value="@Model.ManualTests[i].Id" />
+                            @Html.AntiForgeryToken()
+                            <input type="submit" value="@KTraining.Resources.Views.Test.Solve" class="display-inline btn btn-primary pull-right solve-button col-md-2" />
+                        }
+                    </div>
+                </div>
+
+               }
+           }
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/Test.css" rel="stylesheet" />

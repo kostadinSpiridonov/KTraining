@@ -1,0 +1,68 @@
+﻿.error{
+    color:red;
+}
+
+ .large-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.underline {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+    margin-bottom: 8px;
+}
+
+.green-text {
+    color: green;
+}
+
+.red-text {
+    color: red;
+}
+
+.course-l {
+    font-family: Aparajita;
+    font-size: 25px;
+}
+
+.course {
+    background-color: #fcfcfc;
+    margin-bottom: 15px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.course-title {
+    margin: 3px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;    
+}
+
+.display-h{
+  font-size:19px;
+}
+
+.display-h-li{
+  margin-top:5px;
+}
+
+.truncate-ol{
+   margin-left:-25px;
+   list-style-position:inside;
+}
+
+.margin-right-10{
+    margin-right:10px;
+}
+.course-panel{
+    background-color: #fcfcfc;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-bottom:5px;
+    text-align:center;
+}

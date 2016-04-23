@@ -1,0 +1,94 @@
+﻿.count-q {
+    margin-left: 5px;
+}
+
+.font-size {
+    font-size: 20px;
+}
+
+div.appear {
+    width: 400px;
+    border: 2px solid #ddd;
+    background: #F8F8F8;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    display: none;
+    padding: 0 20px 20px 20px;
+    z-index: 1000000;
+    border-radius: 5px;
+}
+
+.q-panel {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+div.hover {
+    cursor: pointer;
+    width: 5px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+div.hover:hover div.appear {
+    display: block;
+}
+
+.check-box-size {
+    -ms-zoom: 2;
+    zoom: 2;
+}
+
+.apply-btn {
+    margin: 20px;
+}
+
+.input-count-q {
+    max-width: 30px !important;
+}
+
+
+.bottom-border {
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.overflow {
+    overflow-wrap: break-word;
+}
+
+.row-modify {
+    margin-left: 0px;
+}
+
+.row-modify:before {
+    display: none;
+}
+
+.red-color {
+    color: red;
+}
+
+.margin-left-15px {
+    margin-left: 15px;
+}
+
+.help-panel {
+    overflow-wrap: break-word;
+}
+
+.test-panel {
+    margin: 20px;
+    padding-top: 10px;
+    font-size: 17px;
+}
+
+.error {
+    color: red;
+}
+p{
+    display:inline;
+}

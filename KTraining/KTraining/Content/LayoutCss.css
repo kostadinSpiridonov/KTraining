@@ -1,0 +1,23 @@
+﻿@media (min-width: 1000px) {
+     .search-input {
+        width: 290px !important;
+        max-width: 400px !important;
+    }
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 767px) and (max-width: 1000px) {
+     .search-input {
+        width: 125px !important;
+        max-width: 400px !important;
+    }
+}
+
+
+/* Landscape phones and smaller */
+@media (max-width: 767px) {
+     .search-input {
+        width: 290px !important;
+        max-width: 400px !important;
+    }
+}

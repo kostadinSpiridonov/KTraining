@@ -1,0 +1,33 @@
+﻿.background-color {
+    background-color: rgba(0, 140, 186, 0.02);
+    text-align: center;
+}
+
+.material-button {
+    margin-right: -15px;
+}
+
+.material-panel {
+    height: 39px;
+    padding-left: 0px !important;
+    margin: 10px;
+}
+
+.delete-button{
+    margin-right:1px;
+}
+
+.overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float:left;
+    width:50%;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.upload-panel {
+    width: 50%;
+    height: 50%;
+}

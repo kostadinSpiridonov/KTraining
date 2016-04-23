@@ -1,0 +1,46 @@
+﻿@model KTraining.Models.SolvedTestViewModel
+@{
+    ViewBag.Title = "Tests";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h2>@KTraining.Resources.Views.Test.CheckedSys1</h2>
+        </div>
+        <br />
+        <div class="row">
+            @foreach (var item in @Model.AutomaticSolvedTests)
+            {
+                <div class="panel panel-default col-md-9 solved-test-panel">
+                    <div>
+                        <h4><a href="/SolvedTest/SolvedAutomaticTest/@item.Id">@item.Name</a></h4>
+                    </div>
+                    <div>
+                       @KTraining.Resources.Views.Course.CourseN:<a href="/Post/Posts/@item.CourseId">  @item.CourseName</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <h2>@KTraining.Resources.Views.Test.CheckedLeader1</h2>
+        </div>
+        <br />
+        <div class="row">
+            @foreach (var item in @Model.ManualSolvedTest)
+            {
+                <div class="panel panel-default col-md-9 solved-test-panel">
+                    <div>
+                        <h4><a href="/SolvedTest/SolvedManualTest/@item.Id">@item.Name</a></h4>
+                    </div>
+                    <div>
+                        @KTraining.Resources.Views.Course.CourseN: <a href="/Post/Posts/@item.CourseId">  @item.CourseName</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/SolvedTets.css" rel="stylesheet" />

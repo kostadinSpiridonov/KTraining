@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - KTraining</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("/Scripts/jquery-2.1.1.js")
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("KTraining", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Teacher"))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                    @KTraining.Resources.Views.Common.Menu <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+
+                                    <li class="dropdown dropdown-submenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                            @KTraining.Resources.Views.Common.Courses
+                                        </a>
+                                        <ul class="dropdown-menu margin-left-5" role="menu">
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.YourCourses, "GetAllCourses", "Course")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Common.Courses, "Courses", "Course")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.CompletedCourses, "CompletedTeacherCourses", "Course")</li>
+                                            <li role="presentation"><a href="/Request/RequestsToJoin">@KTraining.Resources.Views.Course.RequestsForCourse <span class="badge notification req"></span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown dropdown-submenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                            @KTraining.Resources.Views.Test.Tests
+                                        </a>
+                                        <ul class="dropdown-menu margin-left-5" role="menu">
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Test.Tests, "Type", "Test")</li>
+                                            <li role="presentation"><a href="/CheckManualTest/Tests">@KTraining.Resources.Views.Test.TestsForCheking <span class="badge notification ch-test"></span></a></li>
+                                            <li role="presentation"><a href="/CheckManualTestForLevel/Tests">@KTraining.Resources.Views.Test.TestsForCheckLevels <span class="badge notification"></span></a></li>
+                                            <li role="presentation"></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown dropdown-submenu ">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                            @KTraining.Resources.Views.Course.Examination
+                                        </a>
+                                        <ul class="dropdown-menu margin-left-5" role="menu">
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.Examination, "SelectTest", "TestExamination")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.ExaminationForLevel, "SelectCourse", "ExaminationForLevel")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.ContrExam, "INdex", "TrackExamination")</li>
+                                            <li role="presentation"></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>@Html.ActionLink(@KTraining.Resources.Views.Topic.Topics, "Topics", "Topic")</li>
+
+                                </ul>
+                            </li>
+                        }
+
+                        if (User.IsInRole("Student"))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                    @KTraining.Resources.Views.Common.Menu <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/Mark/Marks">@KTraining.Resources.Views.Common.Marks <span class="badge notification unsMarks"></span></a></li>
+                                    <li role="presentation"></li>
+                                    <li class="dropdown dropdown-submenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                            @KTraining.Resources.Views.Common.Courses 
+                                        </a>
+                                        <ul class="dropdown-menu margin-left-5" role="menu">
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.YourCourses, "StudentCourses", "Course")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Common.Courses, "Courses", "Course")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.CompletedCourses, "CompletedStudentCourses", "Course")</li>
+                                            <li role="presentation">@Html.ActionLink(@KTraining.Resources.Views.Course.CompletedLevels, "StudentCourseLevels", "CourseLevel")</li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown  dropdown-submenu">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
+                                            @KTraining.Resources.Views.Test.Tests
+                                        </a>
+                                        <ul class="dropdown-menu margin-left-5" role="menu">
+                                            <li role="presentation"><a href="/Test/UnsolvedTests">@KTraining.Resources.Views.Test.TestsForSolv <span class="badge slvd-tests notification"></span></a></li>
+                                            <li role="presentation"><a href="/LevelTestForSolving">@KTraining.Resources.Views.Test.TestsForSolvLevel</a></li>
+                                            <li role="presentation"><a href="/SolvedTest/SolvedTests">@KTraining.Resources.Views.Test.SolvedTests</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+
+                    }
+                    <li id="search-li">
+                        <form action="/Search/Search" method="get" class="form-inline">
+                            <div class="form-group">
+                                <input class="form-control search-input" type="text" name="q" placeholder="@KTraining.Resources.Views.Common.Searching" />
+                            </div>
+                            <div class="form-group">
+                                <input value="@KTraining.Resources.Views.Common.Search" type="submit" class="btn btn-default btn-sm" />
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;" style="height:45px; margin-top:-3px;">
+                            <img id="lang-icon" src="" width="35" height="31" alt="submit" />
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="min-width:65px;">
+                            <li style="margin-top:3px; padding-left:8px">
+                                @using (Html.BeginForm("Lang", "Home", FormMethod.Get))
+                                {
+                                    <input type="hidden" name="lang" value="en" />
+                                    <input type="hidden" name="returnUrl" value="@Request.Path" />
+                                    <button type="submit" style="border: 0; background: transparent" value="En">
+                                        <img src="~/Content/United-Kingdom-Flag-1-icon.png" width="35" height="31" alt="submit" />
+                                    </button>
+                                }
+                            </li>
+                            <li style="margin-top:3px; padding-left:8px">
+                                @using (Html.BeginForm("Lang", "Home", FormMethod.Get))
+                                {
+                                    <input type="hidden" name="lang" value="bg" />
+                                    <input type="hidden" name="returnUrl" value="@Request.Path" />
+                                    <button type="submit" style="border: 0; background: transparent" value="Bg">
+                                        <img src="~/Content/Bulgaria-icon.png" width="35" height="35" alt="submit" />
+                                    </button>
+                                }
+                            </li>
+                        </ul>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -KTraining</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery-ui-1.11.1.js"></script>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/prThis.js"></script>
+    <script src="~/Scripts/fileinput.js"></script>
+    <script>
+        $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $(this).parent().siblings().removeClass('open');
+            $(this).parent().toggleClass('open');
+        });
+
+        function getCookie(key) {
+            var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+            return keyValue ? keyValue[2] : null;
+        }
+        if (getCookie("_lang") == "bg") {
+            $("#lang-icon").attr("src", "/Content/Bulgaria-icon.png");
+        }
+        else {
+            $("#lang-icon").attr("src", "/Content/United-Kingdom-Flag-1-icon.png");
+        }
+        if ("@User.IsInRole("Student")" === "True") {
+            $.ajax({
+                type: "GET",
+                url: "/Mark/CountUnseenMarks",
+                traditional: true,
+                success: function (data) {
+                    if (unescape(data).toString() === "0") {
+                        $(".unsMarks").addClass("hidden");
+                    }
+                    else {
+                        $(".unsMarks").html(unescape(data));
+                        $(".unsMarks").removeClass("hidden");
+                    }
+
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/Test/CountUnsolvedTests",
+                traditional: true,
+                success: function (data) {
+                    if (unescape(data).toString() === "0") {
+                        $(".slvd-tests").addClass("hidden");
+                    }
+                    else {
+                        $(".slvd-tests").html(unescape(data));
+                        $(".slvd-tests").removeClass("hidden");
+                    }
+
+                }
+            });
+        }
+        if ("@User.IsInRole("Teacher")" === "True") {
+            $.ajax({
+                type: "GET",
+                url: "/Request/CountRequestsToJoin",
+                traditional: true,
+                success: function (data) {
+                    if (unescape(data).toString() === "0") {
+                        $(".req").addClass("hidden");
+                    }
+                    else {
+                        $(".req").html(unescape(data));
+                        $(".req").removeClass("hidden");
+                    }
+
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/CheckManualTest/CountTests",
+                traditional: true,
+                success: function (data) {
+                    if (unescape(data).toString() === "0") {
+                        $(".ch-test").addClass("hidden");
+                    }
+                    else {
+                        $(".ch-test").html(unescape(data));
+                        $(".ch-test").removeClass("hidden");
+                    }
+
+                }
+            });
+        }
+       
+    </script>
+</body>
+</html>
+<link href="~/Content/LayoutCss.css" rel="stylesheet" />
+<style>
+    .margin-left-5 {
+        padding-left: 5px;
+    }
+
+    #search-li {
+        padding-top: 3px;
+        padding-left: 30px;
+    }
+
+   
+
+    .notification {
+        background-color: #f7a1a1;
+    }
+
+    .marginBottom-0 {
+        margin-bottom: 0;
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: 0px;
+        }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #cccccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #555;
+        }
+
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+
+            .dropdown-submenu.pull-left > .dropdown-menu {
+                left: -100%;
+                margin-left: 10px;
+                -webkit-border-radius: 6px 0 6px 6px;
+                -moz-border-radius: 6px 0 6px 6px;
+                border-radius: 6px 0 6px 6px;
+            }
+</style>

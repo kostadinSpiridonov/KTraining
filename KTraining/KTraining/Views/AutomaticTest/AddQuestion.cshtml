@@ -1,0 +1,55 @@
+﻿@model KTraining.Models.AddQuestionToAutoTest
+
+@{
+    ViewBag.Title = "AddQuestion";
+}
+
+<h2>@KTraining.Resources.Views.Question.ChooseQs</h2>
+@using (Html.BeginForm("AddQuestion", "AutomaticTest", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel-group" id="accordion1">
+
+        @for (int w = 0; w < Model.Topics.Count; w++)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading ">
+                    <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#@Model.Topics[w].Id">
+                        @Model.Topics[w].Name
+                    </a>
+                </div>
+                <div id="@Model.Topics[w].Id" class="panel-collapse collapse row q-panel">
+                    @for (int i = 0; i < @Model.Topics[w].CloseQuestions.Count; i++)
+                    {
+                        <div class="hover col-xs-1 panel panel-default">
+                            <div class="count-q">@(i + 1)</div>
+                            <div>
+                                @Html.CheckBoxFor(x => Model.Topics[w].CloseQuestions[i].IsSelected, new { @class = "select-topic check-box-size" })
+                            </div>
+                            @Html.HiddenFor(x => Model.Topics[w].CloseQuestions[i].Question.Id)
+                            <div class="appear">
+                                <div>
+                                    @Html.Raw(Model.Topics[w].CloseQuestions[i].Question.Content)
+                                    <ol type="A">
+                                        @foreach (var item in Model.Topics[w].CloseQuestions[i].Question.Answers)
+                                        {
+                                            <li>
+                                                @Html.Raw(@item.Content)
+                                            </li>
+                                        }
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        }
+
+    </div>
+    @Html.HiddenFor(m => m.TestId)
+    <input type="submit" value="@KTraining.Resources.Views.Common.Add" class="btn btn-primary" />
+}
+<link href="~/Content/Styles/AutomaticTest.css" rel="stylesheet" />
+

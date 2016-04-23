@@ -1,0 +1,14 @@
+﻿.large-text{
+    font-size:16px;
+    font-weight:bold;
+}
+.underline{
+    border-bottom:1px solid rgba(0, 0, 0, 0.14);
+    margin-bottom:4px;
+}
+.green-text{
+    color:green;
+}
+.red-text{
+    color:red;
+}

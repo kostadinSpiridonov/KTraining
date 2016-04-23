@@ -1,0 +1,49 @@
+﻿@model  KTraining.Models.AddRandomManualTestViewModel
+@{
+    ViewBag.Title = "Topics";
+}
+<h2>@KTraining.Resources.Views.Topic.ChooseTopics</h2>
+@using (Html.BeginForm("AddRandomTest", "ManualTest", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    for (var i = 0; i < Model.SelectedTopics.Count; i++)
+    {
+        <div class="row  bottom-border ">
+            <h3> @Model.SelectedTopics[i].Name</h3>
+        </div>
+        <div class="row col-md-pull-1">
+            <div class="col-md-3">
+                @KTraining.Resources.Views.Question.CloseQuestions
+            </div>
+            <div class="col-md-1">
+                @Html.CheckBoxFor(x => x.SelectedTopics[i].SelectedCloseQ, new { @class = "select-close-q check-box-size" })
+            </div>
+            <div class="col-md-2">
+                @KTraining.Resources.Views.Question.NumOfQs: @Html.TextBoxFor(x => x.SelectedTopics[i].CloseQCount, new { @class = "question-count-close input-count-q" })
+            </div>
+        </div>
+        <div class="row col-md-pull-1">
+            <div class="col-md-3">
+                @KTraining.Resources.Views.Question.OpenQuestions
+            </div>
+            <div class="col-md-1">
+                @Html.CheckBoxFor(x => x.SelectedTopics[i].SelectedOpenQ, new { @class = "select-open-q check-box-size" })
+            </div>
+            <div class="col-md-2">
+                @KTraining.Resources.Views.Question.NumOfQs: @Html.TextBoxFor(x => x.SelectedTopics[i].OpenQCount, new { @class = "question-count-open input-count-q" })
+            </div>
+        </div>
+        <div>
+            @Html.HiddenFor(x => x.SelectedTopics[i].Id)
+            @Html.HiddenFor(x => x.SelectedTopics[i].Name)
+        </div>
+    }
+    @Html.HiddenFor(m => m.Rate)
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(m => m.Time)
+    <div class="row apply-btn">
+        <input type="submit" value="@KTraining.Resources.Views.Common.Ready" class="btn btn-default" />
+    </div>
+}
+<link href="~/Content/Styles/ManualTest.css" rel="stylesheet" />
+<script src="~/Scripts/KTrainingScripts/SelectTopicsRandomMan.js"></script>

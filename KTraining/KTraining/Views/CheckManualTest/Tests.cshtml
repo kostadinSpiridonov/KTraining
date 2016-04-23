@@ -1,0 +1,55 @@
+﻿@model List<KTraining.Models.SolvedManualTestShowViewModel>
+@{
+    ViewBag.Title = "Tests";
+}
+
+<h2>@KTraining.Resources.Views.Test.TestsForCheking</h2>
+<div class="container row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        if (i == 0)
+        {
+            <div class="col-md-7">
+                <a href="/Post/Posts/@Model[i].CourseId"> <h2>@Model[i].CourseName</h2></a>
+            </div>
+            <div class="col-md-12">
+                <hr />
+            </div>
+        }
+        else if (Model[i].CourseName != Model[i - 1].CourseName)
+        {
+            <div class="col-md-7">
+                 <a href="/Post/Posts/@Model[i].CourseId"> <h2>@Model[i].CourseName</h2></a>
+             </div>
+            <div class="col-md-12">
+                <hr />
+            </div>
+        }
+        <div class="panel panel-default col-md-7 margin-left-20">
+            <div>
+                <div class="col-md-9 margin-bottom-5">
+                    <div>
+                        <h4> @Model[i].Name</h4>
+                    </div>
+                    <div>
+                        <a href="/User/UserDetails/@Model[i].StudentId"> @Model[i].StudentName</a>
+                    </div>
+                </div>
+                <div class="col-md-2 margin-top-13px">
+                    @using (Html.BeginForm("CheckTest", "CheckManualTest", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@Model[i].Id" />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Check" class="btn btn-default" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<link href="~/Content/Styles/CheckManualTest.css" rel="stylesheet" />

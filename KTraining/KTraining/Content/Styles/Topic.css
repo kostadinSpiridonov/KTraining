@@ -1,0 +1,13 @@
+﻿.error{
+    color:red;
+}
+.topic-panel {
+    border-right: 1px solid #ddd;
+    min-height:250px;
+}
+.topic{
+    font-size:18px;
+}
+.font-size-18{
+    font-size:18px;
+}

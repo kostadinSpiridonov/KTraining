@@ -1,0 +1,48 @@
+﻿.overflow{
+    overflow-wrap:break-word;
+}
+
+.test-point{
+    max-width:50px !important;
+    width:50px !important;
+}
+
+.row-modify {
+    margin-left: 0px;
+}
+
+.row-modify:before {
+    display: none;
+}
+
+.markS{
+    font-size:30px;
+    margin-left:50px;
+}
+
+.check-btn{
+    margin-left:50px;
+}
+
+.margin-bottom-5{
+    margin-bottom:5px;
+}
+
+.margin-top-13px{
+    margin-top:13px
+}
+
+.margin-left-20{
+    margin-left:20px;
+}
+.answerCircle {
+   border: 1px solid black;
+  padding-right: 2px;
+  border-radius: 50%;
+  padding-left:2px;
+  padding-bottom:1px;
+  padding-top:1px;
+}
+p{
+    display:inline;
+}

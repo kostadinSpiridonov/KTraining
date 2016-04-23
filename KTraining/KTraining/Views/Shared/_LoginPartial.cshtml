@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li role="presentation"><a href="/Notification">@KTraining.Resources.Views.Common.Notifications <span class="badge notification notifs"></span></a></li>
+            <li><a href="/User/UserDetails/@User.Identity.GetUserId()" id="username"></a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@KTraining.Resources.Views.Common.LogOut</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink(@KTraining.Resources.Views.Common.Register, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink(@KTraining.Resources.Views.Common.LogIn, "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+<script>
+    $.ajax({
+        type: "GET",
+        url: "/User/FirstUserName",
+        traditional: true,
+        success: function (data) {
+            $("#username").html(unescape(data));
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: "/Notification/CountNotifications",
+        traditional: true,
+        success: function (data) {
+            if (parseInt(data) > 0) {
+                $(".notifs").html(unescape(data));
+            }
+        }
+    });
+</script>

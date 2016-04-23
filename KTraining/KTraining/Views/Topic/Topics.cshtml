@@ -1,0 +1,22 @@
+﻿@model IEnumerable<KTraining.Models.TopicViewModel>
+@{
+    ViewBag.Title = "Topics";
+}
+
+
+<div class="row">
+    <div class="col-md-6 topic-panel">
+        <h2>@KTraining.Resources.Views.Topic.Topics</h2>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <div class="topic">
+                <a href="/Topic/TypeQuestions/@item.Id">@item.Name</a>
+            </div>
+        }
+    </div>
+    <div class="col-md-6">
+        @Html.Partial("AddTopic", new KTraining.Models.AddTopicViewModel())
+    </div>
+</div>
+<link href="~/Content/Styles/Topic.css" rel="stylesheet" />

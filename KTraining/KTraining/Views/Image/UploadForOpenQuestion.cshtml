@@ -1,0 +1,25 @@
+﻿@model int
+<link href="~/Content/fileinput.css" rel="stylesheet" />
+<script src="~/Scripts/fileinput.js"></script>
+@using (Html.BeginForm("UploadForOpenQuestion", "Image", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div>       
+        @KTraining.Resources.Views.Common.ChoosePic
+        <input type="file" name="Images" id="fiele_upload" formenctype="multipart/form-data" multiple />
+        <input type="hidden" value="@Model" name="QuestionId" />
+    </div>
+}
+
+<script src="~/Scripts/jquery.uploadify.js"></script>
+<link href="~/Content/uploadify.css" rel="stylesheet" />
+<script type="text/javascript">
+    $("#fiele_upload").fileinput({
+        showCaption: false,
+        allowedFileExtensions: ["jpg", "gif", "png"],
+        browseLabel: "@KTraining.Resources.Views.Common.Choose",
+        removeLabel: "@KTraining.Resources.Views.Common.Remove",
+        uploadLabel: "@KTraining.Resources.Views.Common.Upload"
+    });
+</script>
+

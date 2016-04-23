@@ -1,0 +1,24 @@
+﻿@model KTraining.Models.CourseParticipants
+@{
+    ViewBag.Title = "Participants";
+}
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>
+    @Html.Partial("~/Views/Course/NavbarStudent.cshtml", Model.Id)<h3>@KTraining.Resources.Views.Common.Participants</h3>
+    <br />
+    <div class="row">
+        @foreach (var item in Model.Students)
+        {
+            <div class="col-md-3 user">
+                <a href="/User/UserDetails/@item.ApplicationUserId">
+                    <span> @item.ApplicationUser.FirstName </span>
+                    <span> @item.ApplicationUser.SecondName </span>
+                    <span> @item.ApplicationUser.LastName </span>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<link href="~/Content/Styles/CourseParticipants.css" rel="stylesheet" />

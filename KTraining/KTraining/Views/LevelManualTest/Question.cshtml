@@ -1,0 +1,108 @@
+﻿@model KTraining.Models.SolveCloseQuestionViewModel
+@{
+    ViewBag.Title = "Question";
+}
+<br />
+<div class="container">
+    <div class="row row-centered">
+        <div class="col-xs-12 col-centered col-fixed">
+            <div class="text-align-left font-size-17">
+                @(Model.Index + 1).@Html.Raw(Model.Content)
+            </div>
+        </div>
+        <div class="col-xs-12 col-centered col-fixed">
+            <div class="text-align-left">
+                @foreach (var im in Model.Images)
+                {
+                    <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                }
+            </div>
+
+        </div>
+        @using (Html.BeginForm("SendAnswer", "LevelManualTest", FormMethod.Post, new { id = "idForm", @class = "navbar-left col-xs-12 col-centered col-fixed " }))
+         {
+           @Html.AntiForgeryToken()
+            if(!Model.IsMultiple)
+            { 
+                foreach (var item in Model.Answers)
+                {
+                    <div class=" answer-div ">
+                        <div class="text-align-left">
+                            <div class="col-xs-1 radio-btn padding-0">
+                                @Html.RadioButtonFor(x => x.SelectedAnswer, item.Id, new { @id = @item.Id, @class = " answer-label" })
+                            </div>
+                            <div class="col-xs-11 padding-0 "><label class="font-size-15  answer-label" for="@item.Id">@Html.Raw(@item.Content)</label></div>
+
+                            <div class="text-align-left row margin-0">
+                                @foreach (var im in item.Images)
+                                {
+                                    <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+              }
+              else
+            {
+                int index=0;
+                foreach (var item in Model.Answers)
+                {
+                    <div class=" answer-div ">
+                        <div class="text-align-left">
+                            <div class="col-xs-1 radio-btn padding-0">      
+                             @Html.HiddenFor(m => Model.MultipleSelected[index].AnswerId, new { @class = "form-control" })
+                                @Html.CheckBoxFor(m => Model.MultipleSelected[index].IsSelected, new { @class = "form-control" ,style="zoom:0.5"})
+                            </div>
+                            <div class="col-xs-11 padding-0 "><label class="font-size-15  answer-label" for="@item.Id">@Html.Raw(item.Content)</label></div>
+
+                            <div class="text-align-left row margin-0">
+                                @foreach (var im in item.Images)
+                                {
+                                    <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    index++;
+                }
+            }
+            @Html.HiddenFor(m => m.Index, new { @class = "form-control index" })
+            @Html.HiddenFor(m => m.SolvedQuestionId, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.Answers, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.SolvedTestId, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.QuestionId, new { @class = "form-control" })
+      
+            <input type="button" class="btn btn-default" value="@KTraining.Resources.Views.Common.Next" id="next" />
+         }
+    </div>
+    </div>
+
+<script>
+    $("#next").click(function () {
+        GetQuestion();
+
+    });
+    function GetQuestion() {
+        $.ajax({
+            type: "POST",
+            url: "/LevelManualTest/SendAnswer",
+            data: $("#idForm").serialize(),
+            traditional: true,
+            success: function (data) {
+                if (data === true) {
+                    window.location.href = "/LevelManualTest/EndTest/@Model.SolvedTestId";
+                }
+                else {
+                    $("#question").html(data);
+                    $("p").addClass("par-in");
+                    var a = parseInt($(".questionNum").html());
+                    a++;
+                    $(".questionNum").html(a);
+                }
+            }
+        });
+    }
+</script>
+
+<link href="~/Content/Styles/ManualTestStudent.css" rel="stylesheet" />

@@ -1,0 +1,26 @@
+﻿@model int
+
+
+<link href="~/Content/fileinput.css" rel="stylesheet" />
+<script src="~/Scripts/fileinput.js"></script>
+@using (Html.BeginForm("Upload", "CourseMaterials", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="upload-panel">
+        @KTraining.Resources.Views.Common.UploadMat .
+        <input type="file" name="files" id="fiele_upload" formenctype="multipart/form-data" multiple />
+        <input type="hidden" value="@Model" name="id" />
+    </div>
+}
+
+<link href="~/Content/Styles/CourseMaterials.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.uploadify.js"></script>
+<link href="~/Content/uploadify.css" rel="stylesheet" />
+<script type="text/javascript">
+    $("#fiele_upload").fileinput({
+        showCaption: false,
+        browseLabel: "@KTraining.Resources.Views.Common.Choose",
+        removeLabel: "@KTraining.Resources.Views.Common.Remove",
+        uploadLabel: "@KTraining.Resources.Views.Common.Upload"
+    });
+</script>

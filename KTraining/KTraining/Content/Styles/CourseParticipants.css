@@ -1,0 +1,14 @@
+﻿.background-color {
+    background-color: rgba(0, 140, 186, 0.02);
+    text-align: center;
+}
+
+.user{
+    font-size:18px;
+    margin-bottom:20px;
+
+}
+
+.add-student-panel{
+    border-left:1px solid #ddd;
+}

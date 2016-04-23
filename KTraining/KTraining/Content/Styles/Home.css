@@ -1,0 +1,17 @@
+﻿.index-intro {
+    background-color: #eee;
+}
+
+.my-panel{
+    height:500px;
+}
+
+.loading-m{
+    margin-left:30px;
+}
+.nottf>a {
+    cursor: pointer;
+    color:#e57171;
+    font-size:30px;
+    font-family:'Comic Sans MS'
+}

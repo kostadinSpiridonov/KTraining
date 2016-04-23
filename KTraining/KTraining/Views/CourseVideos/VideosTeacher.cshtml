@@ -1,0 +1,40 @@
+﻿@model KTraining.Models.CourseVideoViewModel
+@{
+    ViewBag.Title = "Videos";
+}
+
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>
+    @Html.Partial("~/Views/Course/NavbarTeacher.cshtml", Model.CourseId)
+    <h3>@KTraining.Resources.Views.Common.Videos</h3>
+    <br />
+    <div class="error">
+        @TempData["AddVidError"]
+    </div>
+    @using (Html.BeginForm("Upload", "CourseVideos", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <input type="hidden" name="courseId" value="@Model.CourseId" />
+            <input placeholder="http://www.example.com" name="url" class="form-control display-inline" type="url" />
+            <input type="submit" value="@KTraining.Resources.Views.Common.Add" class="btn btn-primary  post-button" />
+        </div>
+    }
+    <br />
+    <div class="row">
+        @foreach (var item in Model.Videos)
+        {
+            <div class="col-md-6">
+                <a class="danger" href="/CourseVideos/Delete/@item.Id">Изтрий</a>
+                <div class=" video-panel embed-responsive embed-responsive-16by9">
+                    <div>
+                        <iframe type="text/html" class="embed-responsive-item video-pl" src="http://www.youtube.com/embed/@item.SourceId" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<link href="~/Content/Styles/CourseVideos.css" rel="stylesheet" />

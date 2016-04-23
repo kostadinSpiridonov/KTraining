@@ -1,0 +1,24 @@
+﻿
+@model KTraining.Models.CourseVideoViewModel
+@{
+    ViewBag.Title = "Videos";
+}
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>   
+     @Html.Partial("~/Views/Course/NavbarCompleted.cshtml", Model.CourseId)
+    <h3>@KTraining.Resources.Views.Common.Videos</h3>
+    <br />
+    <div class="row">
+        @foreach (var item in Model.Videos)
+        {
+            <div class="col-md-6 video-panel embed-responsive embed-responsive-16by9">
+                <div>
+                    <iframe type="text/html" class="embed-responsive-item video-pl" src="http://www.youtube.com/embed/@item.SourceId" frameborder="0"></iframe>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<link href="~/Content/Styles/CourseVideos.css" rel="stylesheet" />

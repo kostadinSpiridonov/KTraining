@@ -1,0 +1,27 @@
+﻿@model IEnumerable<KTraining.Models.CourseViewModel>
+
+@{
+    ViewBag.Title = "Completed Courses";
+}
+<br />
+<div class="row">
+    <div class="row">
+        <div class="course-l col-md-4">@KTraining.Resources.Views.Course.CompletedCourses</div>
+        <br />
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 panel panel-default course">
+            <div class="col-md-9">
+                <div class="course-title">
+                    <a href="/CourseDetails/Details/@item.Id">
+                        <h4>@item.Name</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script src="~/Scripts/SearchJs.js"></script>
+<link href="~/Content/Styles/Course.css" rel="stylesheet" />

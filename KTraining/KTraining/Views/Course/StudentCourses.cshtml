@@ -1,0 +1,21 @@
+﻿@model IEnumerable<KTraining.Models.CourseDetails>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>@KTraining.Resources.Views.Course.YourCurrentCourses</h2>
+<br />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 panel panel-default course-panel">
+            <h4><a href="/Post/Posts/@item.Id">@item.CourseName</a></h4>
+            <div class="master">
+                <a href="/User/UserDetails/@item.Teacher.ApplicationUserId">  @item.Teacher.ApplicationUser.FirstName @item.Teacher.ApplicationUser.SecondName @item.Teacher.ApplicationUser.LastName </a>
+            </div>
+        </div>
+        
+    }
+</div>
+<link href="~/Content/Styles/Course.css" rel="stylesheet" />

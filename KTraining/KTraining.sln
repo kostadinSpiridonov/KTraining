@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTraining", "KTraining\KTraining.csproj", "{93F6A124-F51E-48E3-A5AB-F3475C3B64E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTreining.Model", "KTreining.Model\KTreining.Model.csproj", "{A6B6154E-0D61-4F3D-AFA6-B21079888E92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTraining.Data", "KTraining.Data\KTraining.Data.csproj", "{8E477BAB-DD7F-4CD4-A15F-29B2B86EB38E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTraining.Service", "KTraining.Service\KTraining.Service.csproj", "{7781A099-981B-4D22-8FCB-273464DAE4E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtfWriter", "RtfWriter\RtfWriter.csproj", "{CBC1BE91-7600-4F8C-B602-1C23E76C998D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTraining.Resources", "KTraining.Resources\KTraining.Resources.csproj", "{4E1DC49D-1641-4D10-BFAA-921125B08467}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93F6A124-F51E-48E3-A5AB-F3475C3B64E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F6A124-F51E-48E3-A5AB-F3475C3B64E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F6A124-F51E-48E3-A5AB-F3475C3B64E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F6A124-F51E-48E3-A5AB-F3475C3B64E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6B6154E-0D61-4F3D-AFA6-B21079888E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B6154E-0D61-4F3D-AFA6-B21079888E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B6154E-0D61-4F3D-AFA6-B21079888E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B6154E-0D61-4F3D-AFA6-B21079888E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E477BAB-DD7F-4CD4-A15F-29B2B86EB38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E477BAB-DD7F-4CD4-A15F-29B2B86EB38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E477BAB-DD7F-4CD4-A15F-29B2B86EB38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E477BAB-DD7F-4CD4-A15F-29B2B86EB38E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7781A099-981B-4D22-8FCB-273464DAE4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7781A099-981B-4D22-8FCB-273464DAE4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7781A099-981B-4D22-8FCB-273464DAE4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7781A099-981B-4D22-8FCB-273464DAE4E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBC1BE91-7600-4F8C-B602-1C23E76C998D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC1BE91-7600-4F8C-B602-1C23E76C998D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC1BE91-7600-4F8C-B602-1C23E76C998D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC1BE91-7600-4F8C-B602-1C23E76C998D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1DC49D-1641-4D10-BFAA-921125B08467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1DC49D-1641-4D10-BFAA-921125B08467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1DC49D-1641-4D10-BFAA-921125B08467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1DC49D-1641-4D10-BFAA-921125B08467}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

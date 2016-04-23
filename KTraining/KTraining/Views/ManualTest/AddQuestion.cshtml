@@ -1,0 +1,103 @@
+﻿@model KTraining.Models.AddQuestionToManualTest
+
+@{
+    ViewBag.Title = "AddQuestion";
+}
+
+
+<h2>@KTraining.Resources.Views.Question.ChooseQs</h2>
+@using (Html.BeginForm("AddQuestion", "ManualTest", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel-group" id="accordion1">
+
+        @for (int w = 0; w < Model.Topics.Count; w++)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading ">
+                    <a class="panel-toggle" data-toggle="collapse" data-parent="#accordion1" href="#@Model.Topics[w].Id">
+                        @Model.Topics[w].Name
+                    </a>
+                </div>
+                <div id="@Model.Topics[w].Id" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="panel-group" id="accordion @Model.Topics[w].Id-cl">
+                            <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <a class="panel-toggle" data-toggle="collapse" data-parent="accordion @Model.Topics[w].Id-cl" href="#@Model.Topics[w].Id-cl">
+                                       @KTraining.Resources.Views.Question.CloseQuestions
+                                    </a>
+                                </div>
+                                <div id="@Model.Topics[w].Id-cl" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div>
+                                        </div>
+                                        @for (int i = 0; i < @Model.Topics[w].CloseQuestions.Count; i++)
+                                        {
+                                            <div class="hover col-xs-1 panel panel-default">
+                                                <div class="count-q">@(i + 1)</div>
+                                                <div>
+                                                    @Html.CheckBoxFor(x => Model.Topics[w].CloseQuestions[i].IsSelected, new { @class = "select-topic check-box-size" })
+                                                </div>
+                                                @Html.HiddenFor(x => Model.Topics[w].CloseQuestions[i].Question.Id)
+                                                <div class="appear">
+
+                                                    <div>
+                                                        @Html.Raw(Model.Topics[w].CloseQuestions[i].Question.Content)
+                                                        <ol type="A">
+                                                            @foreach (var item in Model.Topics[w].CloseQuestions[i].Question.Answers)
+                                                            {
+                                                                <li>
+                                                                    @Html.Raw(@item.Content)
+                                                                </li>
+                                                            }
+                                                        </ol>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group" id="accordion @Model.Topics[w].Id-op">
+                            <div class="panel panel-default">
+                                <div class="panel-heading ">
+                                    <a class="panel-toggle" data-toggle="collapse" data-parent="accordion @Model.Topics[w].Id-op" href="#@Model.Topics[w].Id-op">
+                                        @KTraining.Resources.Views.Question.OpenQuestions
+                                    </a>
+                                </div>
+                                <div id="@Model.Topics[w].Id-op" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div>
+                                        </div>
+                                        @for (int j = 0; j < @Model.Topics[w].OpenQuestions.Count; j++)
+                                        {
+                                            <div class="hover col-xs-1 panel panel-default">
+                                                <div class="count-q">@(j + 1)</div>
+                                                <div>
+                                                    @Html.CheckBoxFor(x => Model.Topics[w].OpenQuestions[j].IsSelected, new { @class = "select-topic check-box-size" })
+                                                </div>
+                                                @Html.HiddenFor(x => Model.Topics[w].OpenQuestions[j].Question.Id)
+                                                <div class="appear">
+
+                                                    <div>
+                                                        @Html.Raw(Model.Topics[w].OpenQuestions[j].Question.Content)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    @Html.HiddenFor(m => m.TestId)
+    <input type="submit" value="@KTraining.Resources.Views.Common.Add" class="btn btn-primary" />
+}
+<link href="~/Content/Styles/ManualTest.css" rel="stylesheet" />

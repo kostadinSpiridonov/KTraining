@@ -1,0 +1,35 @@
+﻿@model KTraining.Models.ShowImageViewModel
+@{
+    ViewBag.Title = "Images";
+}
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>
+    @Html.Partial("~/Views/Course/NavbarStudent.cshtml", Model.Id)
+    @Html.Partial("UploadImage", @Model.Id)
+    <br />
+    <div class="row panel panel-default whole-panel ">
+        @foreach (var item in Model.Images)
+        {
+            <div class="image-panel">
+                <div class="size-img-p">
+                    <a class="fancybox " href="@item.Source" data-fancybox-group="gallery" title="@item.Name"><img src="@item.Source" class="tr" alt=" " height="195"></a>
+                </div>
+                <div class="col-md-12 overflow-hide size-img-p">
+                    @item.Name
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+
+<link href="~/Content/Styles/CourseImages.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.mousewheel.pack.js"></script>
+<script src="~/Scripts/jquery.fancybox.pack.js"></script>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+<script>
+    $('.fancybox').fancybox();
+
+</script>

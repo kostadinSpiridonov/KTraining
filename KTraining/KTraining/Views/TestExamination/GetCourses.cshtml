@@ -1,0 +1,48 @@
+﻿@model KTraining.Models.CoursesForExaminationViewModel
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>@KTraining.Resources.Views.Common.Courses</h2>
+
+<div id="errors" class="errors"></div>
+<button class="btn btn-primary select-all">@KTraining.Resources.Views.Common.ChoseAll</button>
+<div class="row courses">
+        @foreach (var item in Model.Courses)
+        {
+            <div class="col-sm-4 course-panel">
+                <input type="checkbox" class="col-md-1 courses-chb select-course-btn" id="@item.Id">
+                <span class="col-md-11">@item.Name</span>
+            </div>
+        }
+</div>
+<button class="btn btn-primary send-test">@KTraining.Resources.Views.Test.SendTest</button>
+
+<link href="~/Content/Styles/TestExamination.css" rel="stylesheet" />
+<script>
+    $(".send-test").click(function () {
+    var chkArray = [];
+    $(".courses-chb:checked").each(function () {
+        chkArray.push(parseInt($(this).attr("id")));
+    });
+    if (chkArray.length === 0) {
+        $("#errors").html("@KTraining.Resources.Views.Course.PleaseChooseCourse");
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: "/TestExamination/SendTest",
+            data: { coursesIds: chkArray, testId: "@Model.TestId", type:"@Model.Type" },
+            traditional: true,
+            success: function (data) {
+                window.location.href = "/";
+            }
+        });
+    }
+});
+    $(".select-all").click(function () {
+        $(".courses-chb").each(function () {
+            $(this).prop('checked',  !$(this).prop('checked'));
+        });
+    });
+</script>

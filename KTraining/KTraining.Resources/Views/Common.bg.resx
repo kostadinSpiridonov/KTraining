@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activities" xml:space="preserve">
+    <value>Дейности</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добави</value>
+  </data>
+  <data name="AddLevel" xml:space="preserve">
+    <value>Добавяне на ниво</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Приложи</value>
+  </data>
+  <data name="ApplyForCourse" xml:space="preserve">
+    <value>Кандидатствай</value>
+  </data>
+  <data name="ChangePass" xml:space="preserve">
+    <value>Промени паролата</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Провери</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Избери</value>
+  </data>
+  <data name="ChooseFiles" xml:space="preserve">
+    <value>Изберете файлове</value>
+  </data>
+  <data name="ChoosePic" xml:space="preserve">
+    <value>Изберете снимка за качване</value>
+  </data>
+  <data name="ChooseStudents" xml:space="preserve">
+    <value>Изберете ученици</value>
+  </data>
+  <data name="ChoseAll" xml:space="preserve">
+    <value>Избери всички</value>
+  </data>
+  <data name="Courses" xml:space="preserve">
+    <value>Курсове</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Създай</value>
+  </data>
+  <data name="CreateCourse" xml:space="preserve">
+    <value>Създавайте курсове с KTraining</value>
+  </data>
+  <data name="CreateYourProfile" xml:space="preserve">
+    <value>Направете своя профил сега.</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Decline" xml:space="preserve">
+    <value>Отхвърли</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детайли</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Свали</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактирай</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Въведете вашия имейл</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Оценяване</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Експортиране</value>
+  </data>
+  <data name="ForgotPass" xml:space="preserve">
+    <value>Забравили сте си паролата?</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="HideOlder" xml:space="preserve">
+    <value>Скрий по-старите</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Импортиране</value>
+  </data>
+  <data name="ImportDet" xml:space="preserve">
+    <value>Импортиране на файлове от текстове файл. Въпросите трябва да бъдат в Aiken формат.</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Последни</value>
+  </data>
+  <data name="Leader" xml:space="preserve">
+    <value>Ръководител</value>
+  </data>
+  <data name="Levels" xml:space="preserve">
+    <value>Нива</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Влез</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Излез</value>
+  </data>
+  <data name="Mark" xml:space="preserve">
+    <value>Оценка</value>
+  </data>
+  <data name="Marks" xml:space="preserve">
+    <value>Оценки</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Материали</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Минути</value>
+  </data>
+  <data name="MoreAbAiken" xml:space="preserve">
+    <value>Повече за Aiken</value>
+  </data>
+  <data name="MostPopular" xml:space="preserve">
+    <value>Най-известни</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Нов</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Следващ</value>
+  </data>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>Не са налични</value>
+  </data>
+  <data name="Notebook" xml:space="preserve">
+    <value>Бележник</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Известия</value>
+  </data>
+  <data name="NumOfParticipants" xml:space="preserve">
+    <value>Брой участници</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>от</value>
+  </data>
+  <data name="Older" xml:space="preserve">
+    <value>По-стари</value>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>Участници</value>
+  </data>
+  <data name="Participate" xml:space="preserve">
+    <value>Участвате</value>
+  </data>
+  <data name="Pictures" xml:space="preserve">
+    <value>Снимки</value>
+  </data>
+  <data name="PleaseCheckYourEmail" xml:space="preserve">
+    <value>Моля, проверете имейла си, за да промените паролата.</value>
+  </data>
+  <data name="Points" xml:space="preserve">
+    <value>Точки</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Публикувай</value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>Принтиране</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрирай се</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Премахни</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Запази</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Търси</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Търсене</value>
+  </data>
+  <data name="SearchingFor" xml:space="preserve">
+    <value>Търсене за</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Изпрати</value>
+  </data>
+  <data name="SentRequest" xml:space="preserve">
+    <value>Изпратена е заявка</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Време</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Качи</value>
+  </data>
+  <data name="UploadMat" xml:space="preserve">
+    <value>Качи материал</value>
+  </data>
+  <data name="UploadPicture" xml:space="preserve">
+    <value>Качи снимка</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Потребители</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>Клипове</value>
+  </data>
+  <data name="WayToGo" xml:space="preserve">
+    <value>Браво</value>
+  </data>
+  <data name="WriteYourPost" xml:space="preserve">
+    <value>Напиши твоя пост</value>
+  </data>
+</root>

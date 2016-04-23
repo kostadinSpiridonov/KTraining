@@ -1,0 +1,26 @@
+﻿@model List<KTraining.Models.CourseViewModel>
+@{
+    ViewBag.Title = "SelectCourse";
+}
+
+<h2>@KTraining.Resources.Views.Course.ChooseCourse</h2>
+
+<div class="row">
+   @foreach (var item in Model)
+   {
+    <div class="col-md-3 panel panel-default test-panel">
+        <div class="inner-test-panel row">
+
+                <div class="col-lg-8 padding-left-2 overflow margin-top-text">
+                    <a href="/CourseDetails/Details/@item.Id"> @item.Name</a>
+                </div>
+
+                <div class="col-lg-4 padding-left-0 margin-left">
+                    <a href="/ExaminationForLevel/SelectLevel/@item.Id" class="btn btn-default">@KTraining.Resources.Views.Common.Choose</a>
+                </div>
+        </div>
+    </div>
+   }
+</div>
+
+<link href="~/Content/Styles/TestExamination.css" rel="stylesheet" />

@@ -1,0 +1,195 @@
+﻿@model List<KTraining.Models.CourseTrack>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-md-12 row">
+        <div class="col-md-12 row ">
+            <div class="col-md-3">
+                <h4> @KTraining.Resources.Views.Course.CourseN</h4>
+            </div>
+            <div class="col-md-9 row">
+                <div class="col-md-4">
+                    <h4 class="bold"> @KTraining.Resources.Views.Test.TestN</h4>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="bold"> @KTraining.Resources.Views.Test.StudentsNoSolve</h4>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="bold">@KTraining.Resources.Views.Test.StudentsSolve</h4>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <hr class="border-top-black" />
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-12 row">
+                <div class="col-md-3">
+                    <a href="/CourseDetails/Details/@item.Id"><h4>@item.Name</h4></a>
+                </div>
+                <div class="col-md-9 row left-border">
+                    @if (item.AutoTests.Count > 0)
+                    {
+                        <div class="col-md-12 bottom-border">
+                            <h5>@KTraining.Resources.Views.Test.CheckedSys</h5>
+                        </div>
+                    }
+                    @foreach (var item1 in item.AutoTests)
+                    {
+                        <div class="col-md-12 row bottom-border-light padding-5">
+                            <div class="col-md-4">
+                                <a href="/AutomaticTest/Show/@item1.Id">@item1.Name</a>
+                            </div>
+                            <div class="col-md-4 right-border-light st-nosolve-a">
+                                @foreach (var item2 in item1.AutoTestsForSolving)
+                                {
+                                    <div class="col-md-12 row margin-bottom">
+                                        <div class="col-md-12 ">
+                                            <a href="/User/UserDetails/@item2.UserId">@item2.Name</a>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            @using (Html.BeginForm("Remove", "TrackExamination", FormMethod.Post, new { @class = "form-horizontal" }))
+                                            {
+                                                <input type="hidden" name="CourseId" value="@item.Id" />
+                                                <input type="hidden" name="TestId" value="@item1.Id" />
+                                                <input type="hidden" name="StudentId" value="@item2.Id" />
+                                                <input type="hidden" name="IsManualTest" value="false" />
+                                                <input type="hidden" name="CountForSeen" value="@item1.AutoTestsForSolving.Count" />
+                                                <input type="submit" value="@KTraining.Resources.Views.Common.Remove" class="btn btn-xs" />
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 hidden-lg hidden-md">
+                                    <hr />
+                                </div>
+                                @foreach (var item2 in item1.SolvedAutoTests)
+                                {
+                                    <div class="col-md-12 margin-bottom">
+                                        <a href="/User/UserDetails/@item2.UserId">@item2.Name</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    }
+                    @if (item.ManTests.Count > 0)
+                    {
+                        <div class="col-md-12 bottom-border">
+                            <h5>@KTraining.Resources.Views.Test.CheckedLeader</h5>
+                        </div>
+                    }
+                    @foreach (var item1 in item.ManTests)
+                    {
+                        <div class="col-md-12 row bottom-border-light padding-5">
+                            <div class="col-md-4">
+                                <a href="/ManualTest/Show/@item1.Id">@item1.Name</a>
+                            </div>
+                            <div class="col-md-4 right-border-light st-nosolve-m">
+                                @foreach (var item2 in item1.ManTestsForSolving)
+                                {
+                                    <div class="col-md-12 row margin-bottom">
+                                        <div class="col-md-12">
+                                            <a href="/User/UserDetails/@item2.UserId">@item2.Name</a>
+                                        </div>
+                                        <div class="col-md-12">
+                                            @using (Html.BeginForm("Remove", "TrackExamination", FormMethod.Post, new { @class = "form-horizontal" }))
+                                            {
+                                                <input type="hidden" name="CourseId" value="@item.Id" />
+                                                <input type="hidden" name="TestId" value="@item1.Id" />
+                                                <input type="hidden" name="StudentId" value="@item2.Id" />
+                                                <input type="hidden" name="IsManualTest" value="true" />
+                                                <input type="submit" value="@KTraining.Resources.Views.Common.Remove" class="btn btn-xs" />
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 hidden-lg hidden-md">
+                                    <hr />
+                                </div>
+                                @foreach (var item2 in item1.SolvedManTests)
+                                {
+                                    <div class="col-md-12 margin-bottom">
+                                        <a href="/User/UserDetails/@item2.UserId">@item2.Name</a>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-12">
+                <hr class="border-top-black" />
+            </div>
+        }
+    </div>
+</div>
+<style>
+    .bold {
+        font-weight: 300;
+    }
+
+    .left-border {
+        border-left: 1px solid #4db4ff;
+    }
+
+    .bottom-border {
+        border-bottom: 1px solid #cccccc;
+    }
+
+    .bottom-border-light {
+        border-bottom: 1px solid #ffe3e3;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .right-border-light {
+        border-right: 1px solid #ffe3e3;
+    }
+
+    .border-top-black {
+        border-top: 1px solid #4db4ff;
+    }
+
+    .margin-bottom {
+        margin-bottom: 5px;
+    }
+
+    .padding-5 {
+        padding: 5px;
+    }
+</style>
+<script>
+    $(document).ready(
+        function () {
+            setNotification();
+        });
+    function setNotification() {
+        var items = $(".st-nosolve-m");
+        items.each(
+            function () {
+                if ($(this).children().size() == 0) {
+
+                    $(this).parent().css("background-color", "#fbc1c1");
+                    $(this).parent().css("border-radius", "3px");
+                }
+            });
+
+        var items1 = $(".st-nosolve-a");
+        items1.each(
+            function () {
+                if ($(this).children().size() == 1) {
+                    $(this).parent().css("background-color", "#fbc1c1");
+                    $(this).parent().css("border-radius", "3px");
+                }
+            });
+    }
+</script>

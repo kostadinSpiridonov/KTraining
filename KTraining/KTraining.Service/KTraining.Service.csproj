@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7781A099-981B-4D22-8FCB-273464DAE4E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KTraining.Service</RootNamespace>
+    <AssemblyName>KTraining.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CloudinaryDotNet">
+      <HintPath>..\packages\CloudinaryDotNet.1.0.17\lib\net40\CloudinaryDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq.Portable">
+      <HintPath>..\packages\MoreLinq.Portable.1.1.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutomaticTestForSolvingService.cs" />
+    <Compile Include="AutomaticTestService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="CloseAnswerService.cs" />
+    <Compile Include="CloseQuestionService.cs" />
+    <Compile Include="CloudFileService.cs" />
+    <Compile Include="CloudinaryService.cs" />
+    <Compile Include="CourseLevelService.cs" />
+    <Compile Include="CourseService.cs" />
+    <Compile Include="CourseImageService.cs" />
+    <Compile Include="ExportTestService.cs" />
+    <Compile Include="ImportQuestionService.cs" />
+    <Compile Include="LevelTestForSolvingService.cs" />
+    <Compile Include="ManualTestForSolvingService.cs" />
+    <Compile Include="MarkService.cs" />
+    <Compile Include="NotificationService.cs" />
+    <Compile Include="OtherFunctions.cs" />
+    <Compile Include="ManualTestService.cs" />
+    <Compile Include="OpenQuestionService.cs" />
+    <Compile Include="PostService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ImageService.cs" />
+    <Compile Include="RequestToJoinService.cs" />
+    <Compile Include="SolvedAutomaticTestService.cs" />
+    <Compile Include="SolvedCloseQuestionService.cs" />
+    <Compile Include="SolvedManualTestForLevelService.cs" />
+    <Compile Include="SolvedManualTestService.cs" />
+    <Compile Include="SolvedOpenQuestionService.cs" />
+    <Compile Include="StudentCompletedCourseService.cs" />
+    <Compile Include="StudentService.cs" />
+    <Compile Include="TestService.cs" />
+    <Compile Include="TopicService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="VideoService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KTraining.Data\KTraining.Data.csproj">
+      <Project>{8e477bab-dd7f-4cd4-a15f-29b2b86eb38e}</Project>
+      <Name>KTraining.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTreining.Model\KTreining.Model.csproj">
+      <Project>{a6b6154e-0d61-4f3d-afa6-b21079888e92}</Project>
+      <Name>KTreining.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RtfWriter\RtfWriter.csproj">
+      <Project>{cbc1be91-7600-4f8c-b602-1c23e76c998d}</Project>
+      <Name>RtfWriter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

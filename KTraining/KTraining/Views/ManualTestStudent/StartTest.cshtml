@@ -1,0 +1,81 @@
+﻿@model KTraining.Models.StartManualTestViewModel
+@{
+    ViewBag.Title = "Start";
+}
+<div class="font-size-22" id="timer"></div>
+<br />
+<div class="border-q">
+    <div class="row" style="border-bottom: 1px solid #eee;">
+        <div class="col-md-12">
+            <h3>@Model.Title</h3>
+        </div>
+        <div class="col-md-12">
+            <h4>@Model.TeacherName</h4>
+        </div>
+        <div class="col-md-3">
+            @KTraining.Resources.Views.Common.Time:
+            <span id="time">
+            </span>
+        </div>
+        <div class="col-md-12">
+            @KTraining.Resources.Views.Question.Questions:
+            <span class="questionNum">
+                1
+            </span>
+            @KTraining.Resources.Views.Common.Of @Model.CountQuestion
+        </div>
+    </div>
+    <div class="row" id="question">
+        <img class="loading-m" src="~/Content/loading.gif" />
+    </div>
+</div>
+
+<link href="~/Content/Styles/ManualTestStudent.css" rel="stylesheet" />
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+@section scripts{
+@Scripts.Render("~/Scripts/jquery.mousewheel.pack.js")
+@Scripts.Render("~/Scripts/jquery.fancybox.pack.js")
+    <script>
+    $(window).bind('beforeunload', function(){
+        window.open("/ManualTestStudent/EndTest/@Model.SolvedTestId");
+    });
+
+        var time=@Model.Time;
+        $("#time").html(time+" @KTraining.Resources.Views.Common.Minutes");
+    setInterval(function() {
+        $.ajax({
+            type: "POST",
+            url: "/ManualTestStudent/CheckTime",
+            data: {solvedTestId:@Model.SolvedTestId },
+            traditional: true,
+            success: function (data) {
+                if(data===false)
+                {
+                    clearInterval(this);
+                    window.location.href="/ManualTestStudent/EndTest/@Model.SolvedTestId";
+                }
+            }
+        });
+        time--;
+        $("#time").html("@KTraining.Resources.Views.Common.Time: "+time);
+    }, 60 * 1000);
+
+    function GetQuestion()
+    {
+        $.ajax({
+            type: "GET",
+            url: "/ManualTestStudent/Question",
+            data: {questionIndex:0,solvedTestId:@Model.SolvedTestId },
+            traditional: true,
+            success: function (data) {
+                $("#question").html(unescape(data));
+                $('.fancybox').fancybox();
+                $("p").addClass("par-in");
+            }
+        });
+    }
+    GetQuestion();
+
+    $('.fancybox').fancybox();
+</script>
+}

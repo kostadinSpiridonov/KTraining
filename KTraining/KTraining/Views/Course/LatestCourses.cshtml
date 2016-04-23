@@ -1,0 +1,13 @@
+﻿@model List<KTraining.Models.CourseViewModel>
+ 
+<ol type="1" class="truncate-ol">
+    @foreach (var item in Model)
+    {
+        <li class="display-h-li truncate">
+            <a class=" display-h" href="/CourseDetails/Details/@item.Id">
+                @item.Name
+            </a>
+        </li>
+    }
+</ol>
+<link href="~/Content/Styles/Course.css" rel="stylesheet" />

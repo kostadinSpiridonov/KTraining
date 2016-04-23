@@ -1,0 +1,13 @@
+﻿@model KTraining.Models.ImportQuestionViewModel
+@{
+    ViewBag.Title = "Import";
+}
+<br />
+<br/>
+<div>
+    @KTraining.Resources.Views.Question.CompleteUpload @Model.ImportedQuestions @KTraining.Resources.Views.Question.QuestionsA
+</div>
+<div>
+    <a href="/CloseQuestion/Questions/@Model.TopicId">@KTraining.Resources.Views.Question.ToQuestions</a>
+</div>
+

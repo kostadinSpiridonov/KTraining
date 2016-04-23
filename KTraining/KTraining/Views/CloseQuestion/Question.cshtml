@@ -1,0 +1,119 @@
+﻿@model KTraining.Models.CloseQuestionFullViewModel
+
+@{
+    ViewBag.Title = "Question";
+}
+<div>
+    <div>
+        @using (Html.BeginForm("Delete", "CloseQuestion", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="questionId" value="@Model.Id" />
+            <div class="form-group">
+                <div class=" col-md-10">
+                    <input type="submit" class="btn btn-danger" value="@KTraining.Resources.Views.Question.DeleteQuestion" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row error">
+        <div>
+            @TempData["DelError"]
+        </div>
+        <div>
+            @Html.Raw(TempData["EditErrors"])
+        </div>
+    </div>
+    <br />
+    <div>
+        <div>
+            <div class="col-md-12">
+                @KTraining.Resources.Views.Topic.TopicN: @Model.Topic.Name
+            </div>
+            <div class="col-md-12">
+                @KTraining.Resources.Views.Common.Points: @Model.Points
+            </div>
+            <div class=" col-md-12">
+                <h3> @Html.Raw(Model.Content)</h3>
+            </div>
+            <div>
+                @foreach (var item in Model.Images)
+                {
+                    <div class="inner-image-panel ">
+                        <a class="fancybox " href="@item.Source" title="@item.Name"><img src="@item.Source" height="70" width="90" class="tr" alt=""></a>
+                        <a class="btn btn-sm a-image-del" href="/Image/Delete/@item.Id">X</a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">  </div>
+        <button class="btn btn-default edit-question-btn">@KTraining.Resources.Views.Common.Edit</button>
+        <button class="btn btn-default upload-image-question-btn">@KTraining.Resources.Views.Common.UploadPicture</button>
+
+        <div class="hide upload-image-question-panel">
+            @Html.Partial("~/Views/Image/UploadForCloseQuestion.cshtml", Model.Id)
+        </div>
+        <div class="hide edit-question-panel">
+            @Html.Partial("~/Views/CloseQuestion/Edit.cshtml", Model)
+        </div>
+        <hr />
+    </div>
+    <div>
+        @foreach (var item in Model.Answers)
+        {
+            <div>
+                <div>
+                    @if (item.Correct)
+                    {
+                        <span style="font-family: wingdings; font-size: 200%; color:green">&#10004;</span>
+
+                    }
+                    else if (item.Correct == false)
+                    {
+                        <span style="font-family: wingdings; font-size: 200%; color:red">&#10005;</span>
+                    }
+                    <span>@Html.Raw(item.Content)</span>
+                </div>
+                <div>
+                    @foreach (var image in item.Images)
+                    {
+                        <div class="inner-image-panel ">
+                            <a class="fancybox " href="@image.Source" title="@image.Name"><img src="@image.Source" height="70" width="90" class="tr" alt=""></a>
+                            <a class="btn btn-sm a-image-del" href="/Image/Delete/@image.Id">X</a>
+                        </div>
+                    }
+                </div>
+                <div class="row"></div>
+                <button class="btn btn-default edit-answer-btn" answerid="@item.Id">@KTraining.Resources.Views.Common.Edit</button>
+                <button class="btn btn-default upload-image-answer-btn" answerid="@item.Id">@KTraining.Resources.Views.Common.UploadPicture</button>
+                <div class="hide edit-answer-panel">
+                    @Html.Partial("~/Views/CloseAnswer/_Edit.cshtml", new KTraining.Models.UpdateCloseAnswerViewModel { AnswerId = item.Id, Content = item.Content, Correct = item.Correct, QuestionId = item.QuestionId })
+                </div>
+                <div class="upload-image-answer-panel hide">
+                    @Html.Partial("~/Views/Image/UploadForCloseAnswer.cshtml", new KTraining.Models.UploadImagesForCloseAnswer { AnswerId = item.Id, QuestionId = item.QuestionId })
+                </div>
+                <br />
+                <hr />
+            </div>
+        }
+        <div class="hide edit-answer-panel">
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-default add-asnwer-btn">@KTraining.Resources.Views.Question.AddAnswer</button>
+        <div class="hide add-answer-panel ">
+            @Html.Partial("~/Views/CloseAnswer/_AddAnswer.cshtml", new KTraining.Models.AddCloseAnswerViewModel { QuestionId = Model.Id })
+        </div>
+    </div>
+    <a href="/CloseQuestion/Questions/@Model.Topic.Id">@KTraining.Resources.Views.Question.BackToQs</a>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.mousewheel.pack.js"></script>
+    <script src="~/Scripts/jquery.fancybox.pack.js"></script>
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/tinymce/tinymce.min.js")
+    <script src="~/Scripts/KTrainingScripts/QuestionCloseQ.js"></script>
+    <script src="~/Scripts/KTrainingScripts/InitTinyMCE.js"></script>
+}
+<link href="~/Content/Styles/CloseQuestion.css" rel="stylesheet" />

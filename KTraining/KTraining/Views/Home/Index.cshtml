@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "KTraining";
+}
+<div class="row ">
+    <div class="col-md-8 ">
+        <div class="jumbotron index-intro my-panel">
+            <div class="row">
+                <div class="col-xs-7">
+                    <h1>KTraining</h1>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p class="lead hello"></p>
+                        <div class="lead nottf "></div>
+                    }
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+
+                        <p class="lead">@KTraining.Resources.Views.Common.CreateCourse</p>
+                        <p class="lead">@KTraining.Resources.Views.Common.CreateYourProfile </p>
+
+                    }
+
+
+                    <div class="col-xs-6">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <p>
+                                <a href="/Account/Register" class="btn btn-primary btn-lg">@KTraining.Resources.Views.Common.Register</a>
+                            </p>
+                            <p>
+                                <a href="/Account/Login" class="btn btn-primary btn-lg">@KTraining.Resources.Views.Common.LogIn</a>
+                            </p>
+                        }
+                </div>
+            </div>
+                <div class=" col-xs-5">
+                    <img  src="~/Content/Training.jpg" style=" width:100%; margin-top:60px;margin-left:15px"/>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 hidden-sm hidden-xs">
+        <div class="row panel panel-default my-panel">
+            <div class="row  col-md-offset-4">
+                <h3>@KTraining.Resources.Views.Common.Courses</h3>
+            </div>
+            <hr />
+            <div class="col-md-6">
+                <h4>@KTraining.Resources.Views.Common.Last</h4>
+                <div class="row">
+                    <div id="latest-courses">
+                        <img class="loading-m" src="~/Content/loading.gif"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4>@KTraining.Resources.Views.Common.MostPopular</h4>
+                <div class="row">
+                    <div id="most-famous-courses">
+                        <img class="loading-m" src="~/Content/loading.gif" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/Home.css" rel="stylesheet" />
+<script src="~/Scripts/KTrainingScripts/Index.js"></script>
+
+
+

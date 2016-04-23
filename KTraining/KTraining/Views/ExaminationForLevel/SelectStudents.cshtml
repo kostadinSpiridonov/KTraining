@@ -1,0 +1,30 @@
+﻿@model KTraining.Models.ExaminationForLevelViewModel
+
+@{
+    ViewBag.Title = "SelectStudents";
+}
+
+<h2>@KTraining.Resources.Views.Common.ChooseStudents</h2>
+
+@using (Html.BeginForm("SendTest", "ExaminationForLevel", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        @for (int i = 0; i < Model.Students.Count; i++)
+        {
+            <div class="col-md-4">
+                @Html.CheckBoxFor(x => Model.Students[i].IsChecked)
+                @Model.Students[i].FullName
+                @Html.HiddenFor(x => Model.Students[i].Id)
+                @Html.HiddenFor(x => Model.Students[i].FullName)
+            </div>
+        }
+    </div>
+    @Html.HiddenFor(x => x.LevelId)
+    <br />
+    <div class="form-group">
+        <div class=" col-md-10">
+            <input type="submit" value="@KTraining.Resources.Views.Common.Send" class="btn btn-default" />
+        </div>
+    </div>
+}

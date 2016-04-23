@@ -1,0 +1,22 @@
+﻿@model int
+
+
+<div>
+    @KTraining.Resources.Views.Common.ChoosePic
+    <input type="file" name="file_upload" id="file_upload" />
+</div>
+<div id="uploaded">
+</div>
+
+<script src="~/Scripts/jquery.uploadify.js"></script>
+<link href="~/Content/uploadify.css" rel="stylesheet" />
+<script type="text/javascript">
+    $('#file_upload').uploadify({
+        'swf': "@Url.Content("~/Content/uploadify.swf")",
+        'cancelImg': "@Url.Content("~/Content/uploadify-cancel.png")",
+        'uploader': "@Url.Action("Upload", "CloseQuestion", new { id = Model })",
+        'onUploadSuccess': function (file, data, response) {
+            window.location.href = "/CourseImages/ImagesTeacher/@Model"
+        }
+    });
+</script>

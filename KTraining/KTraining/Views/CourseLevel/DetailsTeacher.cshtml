@@ -1,0 +1,41 @@
+﻿@model KTraining.Models.CourseLevelDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@KTraining.Resources.Views.Common.Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestTitle)
+        </dt>
+        <dd>
+            @if (Model.IsManualTest)
+            {
+                <a href="/ManualTest/Show/@Model.TestId">@Model.TestTitle</a>
+            }
+            else
+            {
+                <a href="/AutomaticTest/Show/@Model.TestId">@Model.TestTitle</a>
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.Raw(Model.Description)
+        </dd>
+    </dl>
+    <a href="/CourseLevel/Edit/@Model.Id">@KTraining.Resources.Views.Common.Edit</a>
+
+</div>

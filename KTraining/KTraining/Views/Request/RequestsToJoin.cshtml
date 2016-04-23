@@ -1,0 +1,68 @@
+﻿@model List<KTraining.Models.RequestToJoinViewModel>
+@{
+    ViewBag.Title = "Requests";
+}
+
+<h2>@KTraining.Resources.Views.Course.RequestForАpp</h2>
+
+<div>
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        if(i==0||Model[i].Course!=Model[i-1].Course)
+        {
+            <br />
+            <div>
+                <a href="/Post/Posts/@Model[i].Course.Id">
+                    <div class="course-title">@Model[i].Course.Name</div>
+                </a>
+            </div>
+
+             <hr />
+        }
+        <div class="row request-panel">
+            <div class="col-sm-4">
+                <a href="/User/UserDetails/@Model[i].SendBy.ApplicationUser.Id">
+                    <span> @Model[i].SendBy.ApplicationUser.FirstName</span>
+                    <span> @Model[i].SendBy.ApplicationUser.SecondName</span>
+                    <span> @Model[i].SendBy.ApplicationUser.LastName</span>
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("AcceptRequest", "Request", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <input type="hidden" value="@Model[i].Id" name="id" class="btn btn-default" />
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Add" class="btn btn-default" />
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("DeclineRequest", "Request", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <input type="hidden" value="@Model[i].Id" name="id" class="btn btn-default" />
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Decline" class="btn btn-default" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<style>
+    .course-title{
+        font-size:27px;
+    }
+    .request-panel{
+        margin-bottom:10px;
+    }
+</style>

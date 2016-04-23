@@ -1,0 +1,57 @@
+﻿@model IList<KTraining.Models.ShowMarkViewModel>
+@{
+    ViewBag.Title = "Marks";
+}
+<h2>@KTraining.Resources.Views.Common.Notebook</h2>
+<div>
+    <div class="row underline large-text">
+        <div class="col-md-4 ">
+            @KTraining.Resources.Views.Course.CourseN
+        </div>
+        <div class="col-md-4">
+            @KTraining.Resources.Views.Common.Description
+        </div>
+        <div class="col-md-3">
+            @KTraining.Resources.Views.Common.Date
+        </div>
+        <div class="col-md-1">
+            @KTraining.Resources.Views.Common.Mark
+        </div>
+    </div>
+
+    @foreach (var item in @Model)
+    {
+        <div class="row underline">
+            <div class="col-md-4 ">
+                <a href="/Post/Posts/@item.CourseId">@item.CourseName</a>
+            </div>
+            <div class="col-md-4 ">
+                <p>@item.Descrition</p>
+            </div>
+            <div class="col-md-3">
+                @item.Date
+            </div>
+            @if (item.MarkValue < 3)
+            {
+                <div class="col-md-1 red-text">
+                    @item.MarkValue
+                </div>
+            }
+            else if (item.MarkValue > 5.49)
+            {
+                <div class="col-md-1 green-text">
+                    @item.MarkValue
+                </div>
+            }
+            else
+            {
+                <div class="col-md-1">
+                    @item.MarkValue
+                </div>
+            }
+
+
+        </div>
+    }
+</div>
+<link href="~/Content/Styles/Mark.css" rel="stylesheet" />

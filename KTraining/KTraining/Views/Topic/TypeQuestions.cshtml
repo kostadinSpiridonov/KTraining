@@ -1,0 +1,27 @@
+﻿@model KTraining.Models.TypeQuestionsViewModel
+@{
+    ViewBag.Title = "Types";
+}
+
+<div>
+    <div>
+        <h2>@Model.TopicName</h2>
+        @using (Html.BeginForm("Delete", "Topic", FormMethod.Post, new { @role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="topicId" value="@Model.TopicId" />
+            <input type="submit" class="btn btn-danger" value="@KTraining.Resources.Views.Topic.DeleteTopic" />
+        }
+    </div>
+    <div class="error">
+        @TempData["DelError"]
+    </div>
+    <h3>@KTraining.Resources.Views.Question.Questions</h3>
+    <div>
+        <a class="font-size-18" href="/CloseQuestion/Questions/@Model.TopicId">@KTraining.Resources.Views.Question.CloseQuestions</a>
+    </div>
+    <div>
+        <a class="font-size-18" href="/OpenQuestion/Questions/@Model.TopicId">@KTraining.Resources.Views.Question.OpenQuestions</a>
+    </div>
+</div>
+<link href="~/Content/Styles/Topic.css" rel="stylesheet" />

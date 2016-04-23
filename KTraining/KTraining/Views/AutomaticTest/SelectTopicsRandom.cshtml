@@ -1,0 +1,36 @@
+﻿@model  KTraining.Models.AddRandomAutomaticTestViewModel
+@{
+    ViewBag.Title = "Topics";
+}
+
+<h2>@KTraining.Resources.Views.Topic.ChooseTopics </h2>
+<br />
+@using (Html.BeginForm("AddRandomTest", "AutomaticTest", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    for (var i = 0; i < Model.SelectedTopics.Count; i++)
+    {
+        <div class="row bottom-border">
+            <div class="col-md-3">
+                @Model.SelectedTopics[i].Name
+            </div>
+            <div class="col-md-1">
+                @Html.CheckBoxFor(x => x.SelectedTopics[i].Selected, new { @class = "select-topic check-box-size" })
+                @Html.HiddenFor(x => x.SelectedTopics[i].Id)
+                @Html.HiddenFor(x => x.SelectedTopics[i].Name)
+            </div>
+            <div class="col-md-2">
+               @KTraining.Resources.Views.Question.NumOfQs: @Html.TextBoxFor(x => x.SelectedTopics[i].QuestionCount, new { @class = "question-count-topic input-count-q" })
+            </div>
+          
+        </div>
+    }
+    @Html.HiddenFor(m => m.Rate)
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(m => m.Time)
+    <div class="row apply-btn">
+        <input type="submit" value="@KTraining.Resources.Views.Common.Ready" class="btn btn-default" />
+    </div>
+}
+<script src="~/Scripts/KTrainingScripts/SelectTopicsRandom.js"></script>
+<link href="~/Content/Styles/AutomaticTest.css" rel="stylesheet" />

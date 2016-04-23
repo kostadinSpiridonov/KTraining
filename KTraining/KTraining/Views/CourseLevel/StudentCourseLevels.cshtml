@@ -1,0 +1,28 @@
+﻿@model List<KTraining.Models.CourseLevelsViewModel>
+@{
+    ViewBag.Title = "StudentCourseLevels";
+}
+
+<h2>@KTraining.Resources.Views.Course.YourLevels</h2>
+
+<div class="row">
+    @foreach (var item in @Model)
+    {
+        <div class="col-md-12">
+            <hr />
+        </div>
+        <div class="col-md-12 row">
+            <div class="col-md-4">
+                <a href="/Post/Posts/@item.CourseId"> <h3>@item.CourseName</h3></a>
+            </div>
+            <div class="col-md-8 row">
+                @foreach (var item1 in item.Levels)
+                {
+                    <div class="col-md-12">
+                        <a href="/CourseLevel/Details/@item1.Id"> <h3>@item1.Name</h3></a>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

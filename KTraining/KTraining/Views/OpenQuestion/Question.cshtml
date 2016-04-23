@@ -1,0 +1,89 @@
+﻿@model KTraining.Models.OpenQuestionFullViewModel
+
+@{
+    ViewBag.Title = "Question";
+}
+
+<div>
+    <br />
+    <div>
+        @using (Html.BeginForm("Delete", "OpenQuestion", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="questionId" value="@Model.Id" />
+            <div class="form-group">
+               <div class="col-md-10">
+                    <input type="submit" class="btn btn-danger" value="@KTraining.Resources.Views.Question.DeleteQuestion" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="error">
+        <div>
+            @TempData["DelError"]
+        </div>
+        <div>
+            @TempData["ConError"]
+        </div>
+        <div>
+            @TempData["PointError"]
+        </div>
+        <br />
+    </div>
+    <div>
+        @KTraining.Resources.Views.Topic.TopicN: @Model.Topic.Name
+    </div>
+    <div>
+       @KTraining.Resources.Views.Common.Points: @Model.Points
+    </div>
+    <div>
+        <h4> @Html.Raw(Model.Content)</h4>
+    </div>
+    <div>
+       @KTraining.Resources.Views.Common.Help: @Model.HelpLink
+    </div>
+    <div>
+        @foreach (var item in Model.Images)
+        {
+            <div class="image-panel">
+                <a class="fancybox " href="@item.Source" title="@item.Name"><img src="@item.Source" height="70" width="90" class="tr" alt="" /></a>
+                <a class="btn btn-sm del-image-btn" href="/Image/Delete/@item.Id">X</a>
+            </div>
+        }
+    </div>
+    <div class="row">  </div>
+        <button class="btn btn-default upload-image-question-btn">@KTraining.Resources.Views.Common.UploadPicture</button>
+
+        <button class="btn btn-default edit-question-btn">@KTraining.Resources.Views.Common.Edit</button>
+  
+    <div class="hide edit-question-panel">
+        @Html.Partial("Edit", Model)
+    </div>
+    <br />
+    <br />
+    <div class="hide upload-image-question-panel">
+        @Html.Partial("~/Views/Image/UploadForOpenQuestion.cshtml", Model.Id)
+    </div>
+
+    <a href="/OpenQuestion/Questions/@Model.Topic.Id">@KTraining.Resources.Views.Question.BackToQs</a>
+</div>
+<script src="~/Scripts/jquery.mousewheel.pack.js"></script>
+<script src="~/Scripts/jquery.fancybox.pack.js"></script>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+@Scripts.Render("~/Scripts/tinymce/tinymce.min.js")
+<script>
+    $('.fancybox').fancybox();
+        
+        $('.edit-question-btn').click(function () {
+            $('.edit-question-panel').removeClass('hide');
+            $(this).addClass('hide');
+        });
+       
+        $('.upload-image-question-btn').click(function () {
+            $('.upload-image-question-panel').removeClass('hide');
+            $(this).addClass('hide');
+        });
+       
+</script>
+<script src="~/Scripts/KTrainingScripts/InitTinyMCE.js"></script>
+<link href="~/Content/Styles/OpenQuestion.css" rel="stylesheet" />

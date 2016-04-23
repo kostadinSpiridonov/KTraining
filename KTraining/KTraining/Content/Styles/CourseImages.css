@@ -1,0 +1,51 @@
+﻿.delete-image-button {
+    position: absolute;
+    right: 0px;
+}
+
+.background-color {
+    background-color: rgba(0, 140, 186, 0.02);
+    text-align: center;
+}
+
+.size-img-p {
+    width: 185px;
+    height: 185px;
+}
+
+img.tr {
+    width: 185px;
+    max-height: 185px;
+}
+
+.image-panel {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 45px;
+    max-height: 195px;
+    display: inline;
+    float: left;
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.overflow-hide {
+    overflow: hidden;
+    max-height: 40px;
+}
+
+.whole-panel {
+    min-height: 700px;
+    background: #f7f7f7;
+    padding: 15px;
+}
+
+.position-relative{
+    position:relative;
+}
+
+.upload-panel{
+    width:50%;
+    height:50%;
+}

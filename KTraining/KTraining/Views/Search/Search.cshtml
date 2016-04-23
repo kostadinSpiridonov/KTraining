@@ -1,0 +1,58 @@
+﻿@model  KTraining.Models.SearchViewModel
+@{
+    ViewBag.Title = @Model.SearchWord;
+}
+<div class="row">
+    <div class="col-md-offset-1">
+        <h3>@KTraining.Resources.Views.Common.SearchingFor: @Model.SearchWord</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-offset-1 col-md-5 ">
+        <div class="courses">
+
+            <img class="loading-m" src="~/Content/loading.gif" />
+        </div>
+        <div>
+            <ul class="pagination">
+                <li><a href="#" id="previous-course">&laquo;</a></li>
+                @for (int i = 0; i < @Model.CoursesPageCount; i++)
+                {
+                    <li>
+                        <a href=" #" class="page-link-course">
+                        @(i + 1)</a>
+                    </li>
+
+                }
+                <li><a id="next-course" href="#">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="users">
+
+            <img class="loading-m" src="~/Content/loading.gif" />
+        </div>
+        <div>
+            <ul class="pagination">
+                <li><a id="previous-user" href="#">&laquo;</a></li>
+                @for (int i = 0; i < @Model.UsersPageCount; i++)
+                {
+                    <li>
+                        <a href="#" class="page-link-user">@(i + 1)</a>
+                    </li>
+
+                }
+                <li><a id="next-user" href="#">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="@Model.SearchWord" id="search-word" />
+<input type="hidden" value="@Model.UsersPageCount" id="users-page-count" />
+<input type="hidden" value="@Model.CoursesPageCount" id="courses-page-count" />
+<script src="~/Scripts/KTrainingScripts/Search.js"></script>
+<script src="~/Scripts/SearchJs.js"></script>
+<link href="~/Content/Styles/Search.css" rel="stylesheet" />

@@ -1,0 +1,115 @@
+﻿@model KTraining.Models.CourseLevelAddFullViewModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>@KTraining.Resources.Views.Common.AddLevel</h2>
+
+<hr />
+
+<a href="#" id="showLevelsBtn">@KTraining.Resources.Views.Test.PleaseChooseTestForLevel</a>
+<div class="row hide" id="levels">
+    <br />
+    <div class="row col-md-6">
+        <div class="col-md-12">
+            <h4>@KTraining.Resources.Views.Test.TestCheckBySystem</h4>
+        </div>
+        @foreach(var item in Model.AutomaticTests)
+        {
+            <div class="col-md-6" id="@item.Id">
+                <input name="test" class="test-rd-btn auto" type="radio" id="@item.Id.ToString()asd" value="@item.Id">  
+
+                <label for="@item.Id.ToString()asd" class="test-title test-rd-btn">@item.Title</label>  
+            </div>
+        }
+    </div>
+    <div class="row col-md-6">
+        <div class="col-md-12">
+            <h4>@KTraining.Resources.Views.Test.TestCheckByLeader</h4>
+        </div>
+        @foreach (var item in Model.ManualTests)
+        {
+            <div class="col-md-6" id="@item.Id">
+                <input name="test" class="test-rd-btn man" type="radio" id="@item.Id.ToString()as" value="@item.Id">
+              
+                <label for="@item.Id.ToString()as" class="test-title test-rd-btn">@item.Title</label>  
+            </div>
+        }
+    </div>
+</div>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddCourseLevelViewModel.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddCourseLevelViewModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AddCourseLevelViewModel.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddCourseLevelViewModel.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.AddCourseLevelViewModel.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AddCourseLevelViewModel.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@KTraining.Resources.Views.Common.Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.AddCourseLevelViewModel.AutomaticTestId, new { @id = "autoTestId" })
+    @Html.HiddenFor(m => m.AddCourseLevelViewModel.ManualTestId, new { @id = "manTestId" })
+    @Html.HiddenFor(m => m.AddCourseLevelViewModel.CourseId)
+}
+<script>
+    $(".test-rd-btn").click(function () {
+        
+        if ($(this).attr('type') == 'radio') {
+            if ($(this).hasClass("auto")) {
+                $("#autoTestId").val($(this).attr("value"));
+                $("#manTestId").val(0);
+            }
+            else if ($(this).hasClass("man")) {
+                $("#manTestId").val($(this).attr("value"));
+                $("#autoTestId").val(0);
+            }
+        }
+        else {
+            var rad = $(this).parent().children().first();
+            if (rad.hasClass("auto")) {
+                $("#autoTestId").val(rad.attr("value"));
+                $("#manTestId").val(0);
+            }
+            else if (rad.hasClass("man")) {
+                $("#manTestId").val(rad.attr("value"));
+                $("#autoTestId").val(0);
+            }
+        }
+
+    })
+    $("#showLevelsBtn").click(function () {
+        if($("#levels").hasClass("hide"))
+        {
+            $("#levels").removeClass("hide");
+        }
+        else
+        {
+            $("#levels").addClass("hide");
+        }
+    });
+</script>
+<link href="~/Content/Styles/CourseLevel.css" rel="stylesheet" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/KTrainingScripts/InitTinyMCE.js"></script>
+}
+@Scripts.Render("~/Scripts/tinymce/tinymce.min.js")

@@ -1,0 +1,155 @@
+﻿@model KTraining.Models.SolvedManualTestFullViewModel
+
+@{
+    ViewBag.Title = @Model.TestTitle;
+}
+<div>
+    <div >
+        <h2>@Model.TestTitle ( <a href="/Post/Posts/@Model.CourseId"> @Model.CourseName </a>)</h2>
+        <div>@KTraining.Resources.Views.Common.Time: @Model.TestTime @KTraining.Resources.Views.Common.Minutes</div>
+        <div>@KTraining.Resources.Views.Common.Evaluation: @Model.Rate %</div>
+    </div>
+    <br />
+    <div >
+        <ol type="1" >
+            @foreach (var item in @Model.CloseQuestions)
+            {
+                <li>
+                    <div >
+                        <div class="row row-modify">
+                            <div class="col-md-10">@Html.Raw(item.CloseQuestion.Content)</div>
+                            <div >
+                                @if (item.SelectedAnswers.Where(x => x.Correct == true).Count()
+                                    == item.CloseQuestion.Answers.Where(x => x.Correct == true).Count() &&
+                                    item.SelectedAnswers.Count()
+                                    == item.CloseQuestion.Answers.Where(x => x.Correct == true).Count())
+                                {
+                                    <span>@item.CloseQuestion.Points от @item.CloseQuestion.Points @KTraining.Resources.Views.Common.Points</span>
+                                }
+                                else
+                                {
+                                    <span>0 от @item.CloseQuestion.Points @KTraining.Resources.Views.Common.Points</span>
+                                }
+                        </div>
+                        <div>
+                            @foreach (var im in item.CloseQuestion.Images)
+                            {
+                                <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+
+                            }
+                        </div>
+
+                        <div>
+                            <ol type="a">
+                                @foreach (var an in item.CloseQuestion.Answers)
+                                {
+                                    <li>
+                                        <div>
+                                            @if (an.Correct)
+                                            {
+                                                if (item.SelectedAnswers.Contains(an))
+                                                {
+                                                    <span style="font-size: 150%; color:green" class="glyphicon glyphicon-ok answerCircle"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="font-size: 150%; color:green" class="glyphicon glyphicon-ok "></span>
+                                                }
+
+                                            }
+                                            else if (an.Correct == false)
+                                            {
+                                                if (item.SelectedAnswers.Contains(an))
+                                                {
+                                                    <span style="font-size: 150%; color:red" class="glyphicon glyphicon-remove answerCircle"></span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="font-size: 150%; color:red" class="glyphicon glyphicon-remove "></span>
+                                                }
+                                            }
+                                            <span>@Html.Raw(an.Content)</span>
+                                        </div>
+                                        <div>
+                                            @foreach (var im in an.Images)
+                                            {
+                                                <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                            </ol>
+                            @if (item.CloseQuestion.HelpLink != "" && item.CloseQuestion.HelpLink != null)
+                            {
+                                if (!(item.SelectedAnswers.Where(x => x.Correct == true).Count()
+                                    == item.CloseQuestion.Answers.Where(x => x.Correct == true).Count() &&
+                                    item.SelectedAnswers.Count()
+                                    == item.CloseQuestion.Answers.Where(x => x.Correct == true).Count()))
+                                {
+                                    <div class="red-color help-panel">
+                                        <span>@KTraining.Resources.Views.Common.Points: </span>
+                                        <a target="_blank" href="@item.CloseQuestion.HelpLink">@item.CloseQuestion.HelpLink.Substring(0, item.CloseQuestion.HelpLink.Length > 30 ? 30 : item.CloseQuestion.HelpLink.Length)</a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                     </div>
+                    <hr />
+                </li>
+            }
+            @foreach (var item in @Model.OpenQuestions)
+            {
+                <li>
+                    <div>
+                        <div class="row row-modify">
+                            <div class="col-md-10">@Html.Raw(item.OpenQuestion.Content)</div>
+                            <div>
+                                 <span >@item.Points от @item.OpenQuestion.Points @KTraining.Resources.Views.Common.Points</span>
+                            </div>
+                        </div>
+                        <div>
+                            @foreach (var im in item.OpenQuestion.Images)
+                            {
+                                <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+
+                            }
+                        </div>
+
+                        <div class="row row-modify">
+                            <div class="col-md-12 overflow">
+                                <div>@KTraining.Resources.Views.Question.Answer: </div>
+                                <span>@Html.Raw(item.Answer)</span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row row-modify">
+                            @if (item.Points != item.OpenQuestion.Points)
+                            {
+                                <div class="red-color help-panel">
+                                    <span>@KTraining.Resources.Views.Common.Help: </span>
+                                    @if (item.OpenQuestion.HelpLink != null)
+                                    {
+                                        <a target="_blank" href="@item.OpenQuestion.HelpLink">@item.OpenQuestion.HelpLink.Substring(0, item.OpenQuestion.HelpLink.Length > 30 ? 30 : item.OpenQuestion.HelpLink.Length)</a>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <hr />
+                </li>
+            }
+        </ol>
+    </div>
+    <div>
+        <h3>@KTraining.Resources.Views.Common.Mark: @Model.Mark</h3>
+    </div>
+</div>
+<link href="~/Content/Styles/SolvedTets.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.mousewheel.pack.js"></script>
+<script src="~/Scripts/jquery.fancybox.pack.js"></script>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+<script>
+        $('.fancybox').fancybox();
+
+</script>

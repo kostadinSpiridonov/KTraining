@@ -1,0 +1,89 @@
+﻿@model KTraining.Models.AddCloseQuestionViewModel
+@{
+    ViewBag.Title = "Add question";
+}
+<link href="~/Content/fileinput.css" rel="stylesheet" />
+<h2>@KTraining.Resources.Views.Question.AddCloseQ</h2>
+<br />
+    @using (Html.BeginForm("Add", "CloseQuestion", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Content, new { @class = "col-md-1 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Content, new { @class = "form-control input-post animated redac", @id = "content" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Points, new { @class = "col-md-1 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Points, new { @class = "form-control " })
+            </div>
+        </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.HelpLink, new { @class = "col-md-1 control-label"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.HelpLink, new { @class = "form-control ", placeholder = "http://example.com" ,type="url"})
+        </div>
+    </div>
+        @Html.HiddenFor(m => m.TopicId, new { @class = "form-control" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Images, new { @class = "col-md-1 control-label" })
+        <div class="col-md-10">            
+            @Html.TextBoxFor(m => m.Images, new { type = "file", formenctype = "multipart/form-data", multiple = "multiple", @id = "input-4" })
+        </div>
+    </div>
+        
+
+    <hr />
+    <br />
+    <div id="answers">
+        @for (int i = 0; i <( (@Model.Answers!=null)?Model.Answers.Count:2); i++)
+        {
+            <div class="answer">
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Answers[i].Content, new { @class = "col-md-1 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => Model.Answers[i].Content, new { @class = "form-control input-post animated "})
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Answers[i].Correct, new { @class = "col-md-1 control-label" })
+                    <div class="col-md-1">
+                        @Html.CheckBoxFor(m => Model.Answers[i].Correct, new { @class = "form-control checkbox" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Images, new { @class = "col-md-1 control-label" })
+                    <div class="col-md-10">     
+                       @Html.TextBoxFor(m => Model.Answers[i].Images, new { type = "file", formenctype = "multipart/form-data", multiple = "multiple", @class = "input-5" })
+                    </div>
+                </div>
+            <hr />
+            </div>
+        }
+    </div>
+    <div>
+        <button id="addAnswer" type="button" class="btn btn-primary">@KTraining.Resources.Views.Question.AddAnswer</button>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-10">
+            <input type="submit" class="btn btn-default qwer" value="@KTraining.Resources.Views.Common.Create" />
+        </div>
+    </div>
+}
+@section scripts{
+    @Scripts.Render("~/Scripts/tinymce/tinymce.min.js")
+    <script src="~/Scripts/KTrainingScripts/AddCloseQuestion.js"></script>
+}
+<link href="~/Content/Styles/CloseQuestion.css" rel="stylesheet" />
+<style>
+    input[type=checkbox] {
+        transform: scale(1.3);
+        /* Webkit browsers*/
+        -webkit-transform: scale(1.3);
+    }
+</style>
+

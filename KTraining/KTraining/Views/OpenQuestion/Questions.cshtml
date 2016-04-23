@@ -1,0 +1,75 @@
+﻿@model KTraining.Models.OpenQuestionsViewModel
+@{
+    ViewBag.Title = "Questions";
+}
+<h2>@KTraining.Resources.Views.Question.Questions</h2>
+
+<link href="~/Content/fileinput.css" rel="stylesheet" />
+<script src="~/Scripts/fileinput.js"></script>
+<div>
+    <div>
+        <button class="btn btn-primary" id="import-btn">@KTraining.Resources.Views.Common.Import</button>
+    </div>
+    <div class="panel panel-default hide import-panel" id="import-panel">
+        <div>
+            <p>
+               @KTraining.Resources.Views.Common.ImportDet
+                <a href="/Help/Aiken" target="_blank">@KTraining.Resources.Views.Common.MoreAbAiken</a>
+            </p>
+        </div>
+        @using (Html.BeginForm("ImportOpen", "ImportQuestion", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+               @KTraining.Resources.Views.Common.ChooseFiles
+                <input type="file" name="file" id="fiele_upload" formenctype="multipart/form-data" multiple />
+                <input type="hidden" value="@Model.TopicId" name="id" />
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        @for (int i = 0; i < Model.Questions.Count(); i++)
+        {
+            <div class="col-xs-1 panel panel-default question-panel question hover">
+                <div class="inner-question-panel">
+                    <a href="/OpenQuestion/Question/@Model.Questions[i].Id">@(i + 1)</a>
+                </div>
+                <div class="appear">
+                    <div>
+                        @Html.Raw( Model.Questions[i].Content)
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-xs-1 panel panel-default question-panel question">
+            <div class="inner-question-panel">
+                <a href="/OpenQuestion/Add/@Model.TopicId">@KTraining.Resources.Views.Common.New</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery.uploadify.js"></script>
+<link href="~/Content/uploadify.css" rel="stylesheet" />
+<script type="text/javascript">
+    $("#fiele_upload").fileinput({
+        showCaption: false,
+        browseLabel: "@KTraining.Resources.Views.Common.Choose",
+        removeLabel: "@KTraining.Resources.Views.Common.Remove",
+        uploadLabel: "@KTraining.Resources.Views.Common.Upload"
+    });
+    $("#import-btn").click(function () {
+        {
+            if ($("#import-panel").hasClass("hide")) {
+                $("#import-panel").removeClass("hide");
+            }
+            else {
+                $("#import-panel").addClass("hide");
+            }
+        }
+    });
+
+</script>
+<link href="~/Content/Styles/CloseQuestion.css" rel="stylesheet" />

@@ -1,0 +1,90 @@
+﻿@model int
+@{
+    ViewBag.Title = "Courses";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-offset-1 col-md-10 ">
+        <div class="courses">
+
+            <img class="loading-m" src="~/Content/loading.gif" />
+        </div>
+        <div>
+            <ul class="pagination">
+                <li><a href="#" id="previous-course">&laquo;</a></li>
+                @for (int i = 0; i < @Model; i++)
+                {
+                    <li>
+                        <a href=" #" class="page-link-course">
+                            @(i + 1)
+                        </a>
+                    </li>
+
+                }
+                <li><a id="next-course" href="#">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="@Model" id="courses-page-count" />
+@*<script src="~/Scripts/KTrainingScripts/Search.js"></script>*@
+<script src="~/Scripts/SearchJs.js"></script>
+<link href="~/Content/Styles/Search.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        GetCourses(1);
+        $('.page-link-course:contains("' + parseInt(1) + '")').parent().addClass("active");
+
+        $('.page-link-course').click(function () {
+            var page = $(this).html()
+            $(".page-link-course").each(function () {
+                $(this).parent().removeClass("active");
+            });
+            $(this).parent().addClass("active");
+            GetCourses(page);
+        });
+
+        $('#next-course').click(function () {
+            var page = parseInt($('.active').children('.page-link-course').text());
+            if (page + 1 <= $('#courses-page-count').val()) {
+
+                $(".page-link-course").each(function () {
+                    $(this).parent().removeClass("active");
+                });
+                $('.page-link-course:contains("' + parseInt(page + 1) + '")').parent().addClass("active");
+                GetCourses(page + 1);
+            }
+        });
+
+        $('#previous-course').click(function () {
+            var page = parseInt($('.active').children('.page-link-course').text());
+            if (page - 1 > 0) {
+
+                $(".page-link-course").each(function () {
+                    $(this).parent().removeClass("active");
+                });
+                $('.page-link-course:contains("' + parseInt(page - 1) + '")').parent().addClass("active");
+                GetCourses(page - 1);
+            }
+        });
+
+       
+
+        function GetCourses(page) {
+            var word = "";
+            $.ajax({
+                type: "GET",
+                url: "/Search/SearchCourse",
+                data: { q: word, page: page },
+                traditional: true,
+                success: function (data) {
+                    $('.courses').html(data);
+                }
+            });
+        }
+
+    
+    });
+</script>

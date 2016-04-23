@@ -1,0 +1,138 @@
+﻿@model KTraining.Models.ShowAutomaticTestViewModel
+@{
+    ViewBag.Title = @Model.Title;
+}
+<div class="error">
+     @TempData["ExportError"]
+     @TempData["DeQErrors"]
+</div>
+
+
+<div id="test">
+    <div>
+        <h2>@Model.Title</h2>
+        <div>@KTraining.Resources.Views.Common.Time: @Model.Time @KTraining.Resources.Views.Common.Minutes</div>
+        <div>@KTraining.Resources.Views.Common.Evaluation: @Model.Rate %</div>
+    </div>
+    <br />
+    <div>
+        <ol type="1">
+            @foreach (var item in @Model.CloseQuestions)
+            {
+                <li>
+                    <div>
+                        <div class="row row-modify">
+                            <div class="col-md-10" > @Html.Raw(@item.Content)</div>
+                            <div >
+                                        <span>@item.Points @KTraining.Resources.Views.Common.Points</span>
+                            </div>
+                        </div>
+                        <div>
+                            @foreach (var im in item.Images)
+                            {
+                                <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                            }
+                        </div>
+
+                        <div>
+                            <ol type="a">
+                                @foreach (var an in item.Answers)
+                                {
+                                    <li>
+                                        <div>
+                                            @if (an.Correct)
+                                            {
+                                                <span style=" font-size: 150%; color:green" class="glyphicon glyphicon-ok"></span>
+
+                                            }
+                                            else if (an.Correct == false)
+                                            {
+                                                <span style="font-size: 150%; color:red" class="glyphicon glyphicon-remove"></span>
+                                            }
+                                            <span>@Html.Raw(@an.Content)</span>
+                                        </div>
+                                        <div>
+                                            @foreach (var im in an.Images)
+                                            {
+                                                <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                                            }
+                                        </div>
+                                    </li>
+                                }
+                            </ol>
+                            <br />
+                                <div class="red-color help-panel">
+                                    <span>@KTraining.Resources.Views.Common.Help: </span>
+                                    @if (item.HelpLink != null)
+                                    {
+                                        <a href="@item.HelpLink">@item.HelpLink.Substring(0, item.HelpLink.Length > 30 ? 30 : item.HelpLink.Length)</a>
+                                    }
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm("DeleteQuestion", "AutomaticTest", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="questionId" value="@item.Id"/>
+                                <input type="hidden" name="testId" value="@Model.Id" />
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Remove" class="btn btn-danger del-q" />
+                            }
+
+                        </div> 
+                    </div>
+                    <hr />
+                </li>
+            }
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        @using (Html.BeginForm("AutomaticTest", "ExportTest", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div>
+                <input type="submit" value="@KTraining.Resources.Views.Common.Export" class="btn btn-default  post-button" />
+            </div>
+        }
+
+    </div>
+    <div class="col-md-2">
+        <button id="print" class="btn btn-default">@KTraining.Resources.Views.Common.Print</button>
+    </div>
+    <div class="col-md-2">
+        <a href="/AutomaticTest/AddQuestion/@Model.Id" class="btn btn-default">@KTraining.Resources.Views.Question.AddQ</a>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.mousewheel.pack.js"></script>
+<script src="~/Scripts/jquery.fancybox.pack.js"></script>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+<script>
+    $('.fancybox').fancybox();
+    $('#print').on('click', function () {
+        var links = [];
+        $('img').each(function (i, val) {
+            links.push(val.parentElement.getAttribute("href"));
+            val.parentElement.setAttribute("href", "");
+        })
+        $(".glyphicon").addClass("hidden");
+        $(".del-q").addClass("hidden");
+        $(".help-panel").addClass("hidden");
+        $('#test').printThis();
+        setTimeout(function () {
+            $(".glyphicon").removeClass("hidden");
+            $(".help-panel").removeClass("hidden");
+            $(".del-q").removeClass("hidden");
+            $('img').each(function (i, val) {
+                links.push(val.parentElement.setAttribute("href", links[i]));
+            })
+        }, 500);
+
+    });
+
+</script>
+<link href="~/Content/Styles/AutomaticTest.css" rel="stylesheet" />

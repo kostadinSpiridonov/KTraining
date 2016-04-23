@@ -1,0 +1,42 @@
+﻿@model KTraining.Models.UpdateCloseAnswerViewModel
+@using (Html.BeginForm("Edit", "CloseAnswer", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Content, new { @class = "form-control input-post animated ",@id=Model.AnswerId})
+        </div>
+        @Html.HiddenFor(m => m.AnswerId, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Correct, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Correct, new { @class = "form-control chbox" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.QuestionId, new { @class = "form-control" })
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="@KTraining.Resources.Views.Common.Apply" />
+        </div>
+    </div>
+}
+@using (Html.BeginForm("Delete", "CloseAnswer", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="answerId" value="@Model.AnswerId" />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="@KTraining.Resources.Views.Question.DeleteAnswer" />
+        </div>
+    </div>
+}
+<style>
+    .chbox {
+        /* Webkit browsers*/
+        -webkit-transform: scale(1.3);
+    }
+</style>
+

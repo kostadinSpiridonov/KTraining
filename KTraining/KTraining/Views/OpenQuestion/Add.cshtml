@@ -1,0 +1,52 @@
+﻿@model KTraining.Models.AddOpenQuestionViewModel
+@{
+    ViewBag.Title = "Add";
+}
+<link href="~/Content/fileinput.css" rel="stylesheet" />
+<script src="~/Scripts/fileinput.js"></script>
+<h2>@KTraining.Resources.Views.Question.AddOpenQ</h2>
+@using (Html.BeginForm("Add", "OpenQuestion", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content, new { @class = "col-md-1 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Content, new { @class = "form-control input-post animated ", @id = "content" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Points, new { @class = "col-md-1 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Points, new { @class = "form-control " })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.HelpLink, new { @class = "col-md-1 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.HelpLink, new { @class = "form-control ", placeholder = "http://example.com", type = "url" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.TopicId, new { @class = "form-control" })
+    <div class="form-group">        
+        @Html.LabelFor(x=>x.Images, new { @class = "col-md-1 control-label" })
+        <div class="col-md-10">            
+            @Html.TextBoxFor(m => m.Images, new { type = "file", formenctype = "multipart/form-data", multiple = "multiple", @id = "input-4"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-10">
+            <input type="submit" class="btn btn-default qwer" value="@KTraining.Resources.Views.Common.Add"/>
+        </div>
+    </div>
+}
+@Scripts.Render("~/Scripts/tinymce/tinymce.min.js")
+<script>
+    $("#input-4").fileinput({
+        showCaption: false, showUpload: false,
+        browseLabel: "@KTraining.Resources.Views.Common.Choose",
+        removeLabel: "@KTraining.Resources.Views.Common.Remove"
+    });
+ 
+</script>
+<script src="~/Scripts/KTrainingScripts/InitTinyMCE.js"></script>

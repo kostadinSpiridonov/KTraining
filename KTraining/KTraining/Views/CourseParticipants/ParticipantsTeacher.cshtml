@@ -1,0 +1,49 @@
+﻿@model KTraining.Models.CourseParticipants
+@{
+    ViewBag.Title = "Participants";
+}
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>
+    @Html.Partial("~/Views/Course/NavbarTeacher.cshtml", Model.Id)
+    <h3>@KTraining.Resources.Views.Common.Participants</h3>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            @foreach (var item in Model.Students)
+            {
+                <div class="col-md-10 user">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <a href="/User/UserDetails/@item.ApplicationUserId">
+                                <span> @item.ApplicationUser.FirstName </span>
+                                <span> @item.ApplicationUser.SecondName </span>
+                                <span> @item.ApplicationUser.LastName </span>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            @using (Html.BeginForm("RemoveStudent", "CourseParticipants", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <input type="hidden" name="studentId" value="@item.Id" class="btn btn-default" />
+                                    <input type="hidden" name="courseId" value="@Model.Id" class="btn btn-default" />
+                                    <input type="submit" value="@KTraining.Resources.Views.Common.Remove" class="btn btn-danger" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-6 ">
+            <div class="col-md-12 add-student-panel">
+                @Html.Partial("~/Views/Course/AddStudent.cshtml", new KTraining.Models.AddStudentToCourseViewModel { CourseId = Model.Id, UsernamesJson = Model.UsernamesJson })
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/CourseParticipants.css" rel="stylesheet" />

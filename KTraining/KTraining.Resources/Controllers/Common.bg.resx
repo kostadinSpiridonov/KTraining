@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddMaterial" xml:space="preserve">
+    <value>Добави материал</value>
+  </data>
+  <data name="AddNewImage" xml:space="preserve">
+    <value>Добави новa снимка.</value>
+  </data>
+  <data name="b3f1a68fbceb498497a5c21b6170baf5" xml:space="preserve">
+    <value>Имате една нова заява за участиве във ваш курс.</value>
+  </data>
+  <data name="b74c4efaccfa44f3ba51d834c257ae16" xml:space="preserve">
+    <value>Бяхте приет в курса</value>
+  </data>
+  <data name="c999d7d108874d94abbc95ffb2118a99" xml:space="preserve">
+    <value>Изпит за ниво</value>
+  </data>
+  <data name="ca779cae33834c0fbd4491b45e066343" xml:space="preserve">
+    <value>Успешно взехте ниво</value>
+  </data>
+  <data name="ChangeYourPassHere" xml:space="preserve">
+    <value>Промени твоятя парола като кликнеш тук</value>
+  </data>
+  <data name="ChooseOneStudent" xml:space="preserve">
+    <value>Моля изберете поне един ученик !</value>
+  </data>
+  <data name="d3357bfa357649c2859fd8041a445ef4" xml:space="preserve">
+    <value>Имате нов тест за решаване за ниво.</value>
+  </data>
+  <data name="d482501cd64540118d525ea74747a692" xml:space="preserve">
+    <value>Имате една нова оценка.</value>
+  </data>
+  <data name="e35211cee5764713846c0366b4fb97f4" xml:space="preserve">
+    <value>Добави ново видео</value>
+  </data>
+  <data name="EmailOccupied" xml:space="preserve">
+    <value>Имейлът е зает</value>
+  </data>
+  <data name="f797056e86c24aaa9d603a92366d2526" xml:space="preserve">
+    <value>Имате нов тест за решаване.</value>
+  </data>
+  <data name="FieldAboutMeDanger" xml:space="preserve">
+    <value>Полето За мен съдържа опасни думи !</value>
+  </data>
+  <data name="FieldAnsDanger" xml:space="preserve">
+    <value>Полето Отговор съдържа опасни думи !</value>
+  </data>
+  <data name="FieldAnsRequired" xml:space="preserve">
+    <value>Полето Отговор е задължително</value>
+  </data>
+  <data name="FieldDescriptionDanger" xml:space="preserve">
+    <value>Полето описание съдържа опасни думи !</value>
+  </data>
+  <data name="FieldQRequired" xml:space="preserve">
+    <value>Полето Въпрос е задължително</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Полето е задължително !</value>
+  </data>
+  <data name="FiledQDanger" xml:space="preserve">
+    <value>Полето Въпрос съдържа опасни думи !</value>
+  </data>
+  <data name="HaveOneDigit" xml:space="preserve">
+    <value>Паролата трябва да съдържа поне една цифра</value>
+  </data>
+  <data name="Leader" xml:space="preserve">
+    <value>Ръководител</value>
+  </data>
+  <data name="NoChooseTest" xml:space="preserve">
+    <value>Няма избран тест за нивото !</value>
+  </data>
+  <data name="NoEmailExist" xml:space="preserve">
+    <value>Потребител с такъв имейл не съществува.</value>
+  </data>
+  <data name="NoUser" xml:space="preserve">
+    <value>Няма такъв потребител.</value>
+  </data>
+  <data name="OneCorrectAns" xml:space="preserve">
+    <value>Трябва да има поне един верен отговор.</value>
+  </data>
+  <data name="ProblemTryAgain" xml:space="preserve">
+    <value>Възникна проблем, моля опитайте отново.</value>
+  </data>
+  <data name="q27e30c9e92b4b11bb5a420f7a98e29d" xml:space="preserve">
+    <value>Имате един нов тест за проверяване.</value>
+  </data>
+  <data name="ShouldBeNum" xml:space="preserve">
+    <value>Стойността на полето Точки трябва да бъде число!</value>
+  </data>
+  <data name="SomeoneUserThisQ" xml:space="preserve">
+    <value>Някой използва този въпрос в момента !</value>
+  </data>
+  <data name="SomeoneUserThisTest" xml:space="preserve">
+    <value>Някой използва този тест. Моля опитайте по-късно !</value>
+  </data>
+  <data name="SomeoneUserThisTestNoQ" xml:space="preserve">
+    <value>Някой използва този тест в момента и не може да добавите въпрос !</value>
+  </data>
+  <data name="SomeoneUseThisCourse" xml:space="preserve">
+    <value>Този курс се използва и не може да бъде изтрит !</value>
+  </data>
+  <data name="SomeoneUseThisTopic" xml:space="preserve">
+    <value>Някой използва тази тема. Моля опитайте по-късно !</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>Ученик</value>
+  </data>
+  <data name="SuccessChangePass" xml:space="preserve">
+    <value>Успешно сменихте паролата</value>
+  </data>
+  <data name="WrongPass" xml:space="preserve">
+    <value>Грешна парола</value>
+  </data>
+  <data name="ab81e1b26160402e86c134cc4bc53f55" xml:space="preserve">
+    <value>премахна</value>
+  </data>
+  <data name="bb81ab8cfb1745708af8ab41b4b74368" xml:space="preserve">
+    <value>към курса.</value>
+  </data>
+  <data name="d1b83438729e43b886f48920a0478a0f" xml:space="preserve">
+    <value>от курса.</value>
+  </data>
+  <data name="f8d83880ec11490284d74705e43ecc49" xml:space="preserve">
+    <value>Добави ново видео.</value>
+  </data>
+  <data name="t4c66efaa35043beaaeb5f7e7c6a1ed1" xml:space="preserve">
+    <value>добави</value>
+  </data>
+</root>

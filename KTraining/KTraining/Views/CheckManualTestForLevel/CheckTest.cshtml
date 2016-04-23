@@ -1,0 +1,132 @@
+﻿@model KTraining.Models.SolvedManualTestCheckViewModel
+@{
+    ViewBag.Title = "Check test";
+}
+<div>
+    @using (Html.BeginForm("CheckTest", "CheckManualTestForLevel", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <a href="/User/UserDetails/@Model.Student.ApplicationUserId"> <h3>@Model.Student.ApplicationUser.FirstName  @Model.Student.ApplicationUser.SecondName  @Model.Student.ApplicationUser.LastName </h3></a>
+        <h4>@Model.TestTitle</h4>
+        <br />
+        <div>
+            <ol type="1">
+                @foreach (var item in Model.SolvedCloseQuestions)
+                {
+                    <li>
+                        <div>
+                            <div class="row row-modify">
+                                <div class="col-md-10">@Html.Raw(item.CloseQuestion.Content)</div>
+                                <div>
+                                    @if (!(item.SelectedAnswers.Where(x => x.Correct == true).Count()
+                                == item.CloseQuestion.Answers.Where(x => x.Correct == true).Count() &&
+                                item.SelectedAnswers.Count()
+                                == item.CloseQuestion.Answers.Where(x => x.Correct == true).Count()))
+                                    {
+                                        <input type="text" class="test-point" max="@item.CloseQuestion.Points" value="0" disabled />
+                                        <span> @KTraining.Resources.Views.Common.Points</span>
+                                    }
+                                    else
+                                    {
+                                        <input disabled type="text" class="test-point" value="@item.CloseQuestion.Points" />
+                                        <span> @KTraining.Resources.Views.Common.Points</span>
+
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                @foreach (var im in item.CloseQuestion.Images)
+                                {
+                                    <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                                }
+                            </div>
+                            <div>
+                                <ol type="a">
+                                    @foreach (var an in item.CloseQuestion.Answers)
+                                    {
+                                        <li>
+                                            <div>
+                                                @if (an.Correct)
+                                                {
+                                                    if (item.SelectedAnswers.Contains(an))
+                                                    {
+                                                        <span style="font-size: 150%; color:green" class="glyphicon glyphicon-ok answerCircle"></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="font-size: 150%; color:green" class="glyphicon glyphicon-ok "></span>
+                                                    }
+
+                                                }
+                                                else if (an.Correct == false)
+                                                {
+                                                    if (item.SelectedAnswers.Contains(an))
+                                                    {
+                                                        <span style="font-size: 150%; color:red" class="glyphicon glyphicon-remove answerCircle"></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="font-size: 150%; color:red" class="glyphicon glyphicon-remove "></span>
+                                                    }
+                                                }
+                                                <span>@Html.Raw(an.Content)</span>
+                                            </div>
+                                            <div>
+                                                @foreach (var im in an.Images)
+                                                {
+                                                    <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+                                                }
+                                            </div>
+                                        </li>
+                                    }
+                                </ol>
+                                <br />
+                            </div>
+                        </div>
+                        <hr />
+                    </li>
+                }
+                @for (int i = 0; i < @Model.SolvedOpenQuestions.Count; i++)
+                {
+                    <li>
+                        <div>
+                            <div class="row row-modify">
+                                <div class="col-md-10">@Html.Raw(Model.SolvedOpenQuestions[i].OpenQuestion.Content)</div>
+                                <div>
+                                    @Html.TextBoxFor(m => m.SolvedOpenQuestions[i].Points, new { @class = "test-point", @max = @Model.SolvedOpenQuestions[i].OpenQuestion.Points, @value = "0" })
+                                    <span> @KTraining.Resources.Views.Common.Points (@Model.SolvedOpenQuestions[i].OpenQuestion.Points max)</span>
+                                    @Html.HiddenFor(m => m.SolvedOpenQuestions[i].Id)
+                                </div>
+                            </div>
+                            <div>
+                                @foreach (var im in Model.SolvedOpenQuestions[i].OpenQuestion.Images)
+                                {
+                                    <a class="fancybox " href="@im.Source" title="@im.Name"><img src="@im.Source" height="70" width="90" class="tr" alt=""></a>
+
+                                }
+                            </div>
+                            <div class="row row-modify">
+                                <div class="col-md-12 overflow">
+                                    <div>@KTraining.Resources.Views.Question.Answer:</div>
+                                    @Html.Raw(Model.SolvedOpenQuestions[i].Answer)
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </li>
+                }
+            </ol>
+        </div>
+        <div class="markS">
+        </div>
+        @Html.HiddenFor(m => m.MaxPoints, new { @class = "maxPoints" })
+        @Html.HiddenFor(m => m.Rate, new { @class = "rate" })
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Student.Id)
+        @Html.HiddenFor(x => x.Student.ApplicationUserId)
+        @Html.HiddenFor(x => x.CourseLevelId)
+        <input type="submit" value="@KTraining.Resources.Views.Common.Ready" class="btn btn-primary check-btn" />
+    }
+</div>
+<script src="~/Scripts/KTrainingScripts/CheckTest.js"></script>
+<link href="~/Content/Styles/CheckManualTest.css" rel="stylesheet" />

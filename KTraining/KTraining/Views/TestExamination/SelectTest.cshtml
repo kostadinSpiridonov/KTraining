@@ -1,0 +1,59 @@
+﻿@model KTraining.Models.SelectTestViewModel
+@{
+    ViewBag.Title = "Tests";
+}
+
+<h3>@KTraining.Resources.Views.Test.ChooseTest</h3>
+<div class="row">
+    <div class="col-md-6">
+        <h4>@KTraining.Resources.Views.Test.CheckedSys</h4>
+        <hr />
+        <div class="row row-override ">
+            @foreach (var item in Model.AutomaticTests)
+            {
+                <div class="col-md-5 panel panel-default test-panel">
+                    <div class="inner-test-panel row">
+                        @using (Html.BeginForm("GetCourses", "TestExamination", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="col-lg-8 padding-left-2 overflow margin-top-text">
+                                <a href="/AutomaticTest/Show/@item.Id"> @item.Title</a>
+                            </div>
+                            <input type="hidden" name="testId" value="@item.Id" />
+                            <input type="hidden" name="type" value="auto" />
+                            <div class="col-lg-4 padding-left-0 margin-left">
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Choose" class="btn btn-default" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4>@KTraining.Resources.Views.Test.CheckedLeader</h4>
+        <hr />
+        <div class="row row-override   ">
+            @foreach (var item in Model.ManualTests)
+            {
+                <div class="col-md-5 panel panel-default test-panel">
+                    <div class="inner-test-panel row">
+                        @using (Html.BeginForm("GetCourses", "TestExamination", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="col-md-8 padding-left-2 overflow margin-top-text">
+                                <a href="/ManualTest/Show/@item.Id"> @item.Title</a>
+                            </div>
+                            <input type="hidden" name="testId" value="@item.Id" />
+                            <input type="hidden" name="type" value="manual" />
+                            <div class="col-lg-4 padding-left-0 margin-left">
+                                <input type="submit" value="@KTraining.Resources.Views.Common.Choose" class="btn btn-default" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/TestExamination.css" rel="stylesheet" />

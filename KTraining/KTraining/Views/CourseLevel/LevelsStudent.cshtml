@@ -1,0 +1,22 @@
+﻿@model KTraining.Models.CourseLevelsViewModel
+@{
+    ViewBag.Title = "CourseLevels";
+}
+
+<div>
+    <div class="background-color panel panel-default">
+        <h1>@Model.CourseName</h1>
+    </div>
+    @Html.Partial("~/Views/Course/NavbarStudent.cshtml", Model.CourseId)
+    <div>
+        <div class="row">
+            @foreach (var item in Model.Levels)
+            {
+                <div class="col-md-2 panel panel-default overflow level-panel">
+                    <a href="/CourseLevel/Details/@item.Id"> @item.Name</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<link href="~/Content/Styles/CourseLevel.css" rel="stylesheet" />

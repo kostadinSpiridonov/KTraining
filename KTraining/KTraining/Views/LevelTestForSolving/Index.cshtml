@@ -1,0 +1,48 @@
+﻿@model IEnumerable<KTraining.Models.LevelTestForSolvingViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@KTraining.Resources.Views.Test.TestForLevels</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestName)
+        </td>
+        <td>
+            @if(!item.IsManual)
+            {
+                <a class="btn btn-default" href="/LevelAutomaticTest/StartTest/@item.Id">@KTraining.Resources.Views.Test.Solve</a>
+            }
+            else
+            {
+                <a class="btn btn-default" href="/LevelManualTest/StartTest/@item.Id">@KTraining.Resources.Views.Test.Solve</a>
+            }
+        </td>
+    </tr>
+}
+
+</table>

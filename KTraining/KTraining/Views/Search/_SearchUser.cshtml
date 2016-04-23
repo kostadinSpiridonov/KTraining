@@ -1,0 +1,18 @@
+﻿@model List<KTraining.Models.UserSearchViewModel>
+
+    <div class="row">
+        <div class="row">
+            <div class="user-l col-md-2">@KTraining.Resources.Views.Common.Users</div>
+            <br />
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-10 panel panel-default user">
+                <a href="/User/UserDetails/@item.Id">
+                    <h4>@item.FullName</h4>
+                </a>
+            </div>
+        }
+    </div>
+<script src="~/Scripts/SearchJs.js"></script>
+<link href="~/Content/Styles/Search.css" rel="stylesheet" />

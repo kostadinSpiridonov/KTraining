@@ -1,0 +1,56 @@
+﻿.import-panel {
+    padding: 20px;
+    width: 70%;
+}
+
+.question-panel {
+    height: 97px;
+    display: table;
+    margin: 5px;
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    display: table;
+}
+
+.inner-question-panel {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div.appear {
+    width: 200px;
+    border: 1px solid #ddd;
+    background: #F8F8F8;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    display: none;
+    padding: 0 20px 20px 20px;
+    z-index: 1000000;
+    border-radius: 5px;
+    font-size: 18px;
+    overflow-wrap:break-word;
+}
+
+div.hover:hover div.appear {
+    display: block;
+}
+
+.image-panel{
+    width:90px;
+    float:left;
+    position:relative;
+    margin:5px;
+}
+.del-image-btn{
+    position:absolute;
+    top:0px;
+    right:0px;
+    font-size:21px;
+    color:red;
+    padding:3px;
+}
+.error{
+    color:red;
+}

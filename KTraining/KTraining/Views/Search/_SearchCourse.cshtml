@@ -1,0 +1,42 @@
+﻿@model List<KTraining.Models.CourseSearchViewModel>
+
+    <div class="row">
+        <div class="row">
+            <div class="course-l col-md-2">@KTraining.Resources.Views.Common.Courses</div>
+            <br />
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-10 panel panel-default course" >
+                <div class="col-md-9">
+                    <div class="course-title">
+                        <a href="/CourseDetails/Details/@item.Id">
+                            <h4>@item.Name</h4>
+                        </a>
+                    </div>
+                    <div class="master">
+                        <a href="/User/UserDetails/@item.TeacherAppId"> @item.TeacherName</a>
+                    </div>
+                </div>
+                @if (User.IsInRole("Student"))
+                {
+                <div class="col-md-6 course-button">
+                    @if (item.Relation == "pr")
+                    {
+                        <input disabled value="@KTraining.Resources.Views.Common.Participate" class="btn btn-default course-button" id="@item.Id" />
+                    }
+                    else if (item.Relation == "sr")
+                    {
+                        <input disabled value="@KTraining.Resources.Views.Common.SentRequest" class="btn btn-default course-button" id="@item.Id" />
+                    }
+                    else if (item.Relation == "np")
+                    {
+                        <input type="submit" value="@KTraining.Resources.Views.Common.ApplyForCourse" class="btn btn-default participate course-button" id="@item.Id" />
+                    }
+                </div>
+                }
+            </div>
+        }
+    </div>
+<script src="~/Scripts/SearchJs.js"></script>
+<link href="~/Content/Styles/Search.css" rel="stylesheet" />

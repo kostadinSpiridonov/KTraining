@@ -1,0 +1,87 @@
+﻿@model KTraining.Models.StartAutoTestViewModel
+@{
+    ViewBag.Title = "Solving";
+}
+
+<div class="font-size-22" id="timer">
+
+</div>
+<br />
+<div class="q-border">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>@Model.Title</h3>
+        </div>
+        <div class="col-md-12">
+            <h4>@Model.TeacherName</h4>
+        </div>
+        <div class="col-md-3">
+            @KTraining.Resources.Views.Common.Time:
+            <span id="time">
+
+            </span>
+        </div>
+        <div class="col-md-12">
+            @KTraining.Resources.Views.Question.Questions:
+            <span class="questionNum">
+                1
+            </span>
+            @KTraining.Resources.Views.Common.Of @Model.QuestionCount
+        </div>
+    </div>
+    <div class="row" id="question">
+
+        <img class="loading-m" src="~/Content/loading.gif" />
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery.mousewheel.pack.js"></script>
+    <script src="~/Scripts/jquery.fancybox.pack.js"></script>
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+    <script>
+
+        $(window).bind('beforeunload', function(){
+            window.open("/LevelAutomaticTest/EndTest");
+        });
+
+        var time=@Model.Time;
+        $("#time").html(time+" @KTraining.Resources.Views.Common.Minutes");
+
+        setInterval(function() {
+            $.ajax({
+                type: "POST",
+                url: "/LevelAutomaticTest/CheckTime",
+                traditional: true,
+                success: function (data) {
+                    if(data===false)
+                    {
+                        window.location.href="/LevelAutomaticTest/EndTest";
+                    }
+                }
+            });
+            time--;
+            $("#time").html(time+ " @KTraining.Resources.Views.Common.Minutes");
+        }, 60 * 1000);
+
+        function GetQuestion()
+        {
+            $("#question").html("Loading ...");
+            $.ajax({
+                type: "GET",
+                url: "/LevelAutomaticTest/Question",
+                data: {questionIndex:0},
+                traditional: true,
+                success: function (data) {
+                    $("#question").html(unescape(data));
+                    $("p").addClass("par-in");
+                  
+                }
+            });
+        }
+        GetQuestion();
+
+        $('.fancybox').fancybox();
+
+    </script>
+}
+<link href="~/Content/Styles/AutomaticTestStudent.css" rel="stylesheet" />

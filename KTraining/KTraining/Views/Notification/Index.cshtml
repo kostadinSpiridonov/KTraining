@@ -1,0 +1,85 @@
+﻿@model IEnumerable<KTreining.Model.Notification>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>@KTraining.Resources.Views.Common.Notifications</h2>
+    
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-7 ">
+                @if(!item.Seen)
+                { 
+                <div class="col-md-10 panel panel-default notif" link="@item.Link">
+                    <div class="course-title">
+                        @item.Content
+                    </div>
+                </div>
+                }
+            </div>
+        }
+   
+        <div class="col-md-12 row">
+            <div class="col-md-12">
+                <hr />
+                <a class="old">@KTraining.Resources.Views.Common.Older</a>
+                <a class="hide-old hidden">@KTraining.Resources.Views.Common.HideOlder</a>
+            </div>
+            @foreach (var item in Model)
+            {
+                if (item.Seen)
+                {
+                    <div class="col-md-7 hidden old-not">
+                            <div class="col-md-10 panel panel-default notif" link="@item.Link">
+                                <div class="course-title">
+                                    @item.Content
+                                </div>
+                            </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+<style>
+    .course-title{
+       margin:10px
+    }
+    .notif:hover{
+        background:#d1d0d0;
+        cursor:pointer;
+    }
+</style>
+<script>
+    
+    $(window).on('unload', function (e) {
+        setSeetn();
+    });
+    function setSeetn() {
+        var myVar;
+        myVar = setTimeout(function () { console.log(""); }, 3000000000000000000000000000);
+
+        $.ajax({
+            url: "/Notification/SetSeen",
+            success: function () {
+
+                myVar = setTimeout(function () {console.log("") }, 300);
+            }
+        });
+    };
+    $(".notif").click(function () {
+        window.location.href = $(this).attr("link");
+    });
+    $(".old").click(function () {
+        $(".old-not").removeClass("hidden");
+        $(this).addClass("hidden");
+        $(".hide-old").removeClass("hidden");
+    })
+    $(".hide-old").click(function () {
+        $(".old-not").addClass("hidden");
+        $(this).addClass("hidden");
+        $(".old").removeClass("hidden");
+    })
+</script>

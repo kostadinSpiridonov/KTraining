@@ -1,0 +1,34 @@
+﻿@model IEnumerable<KTraining.Models.TestViewModel>
+@{
+    ViewBag.Title = "Tests";
+}
+
+<h2>@KTraining.Resources.Views.Test.YourTests</h2>
+<a class="btn btn-default" href="/AutomaticTest/AddRandomTest">@KTraining.Resources.Views.Test.AddGenTest</a>
+<a class="btn btn-default" href="/AutomaticTest/AddSimpleTest">@KTraining.Resources.Views.Test.AddSimpleTest</a>
+<div class="error">
+    @TempData["DelError"]
+</div>
+<div class="row">
+    @foreach (var item in @Model)
+    {
+        <div class="panel panel-default col-md-5 test-panel">
+            <div class="col-md-10">
+                <a href="/AutomaticTest/Show/@item.Id">  @item.Title</a>
+            </div>
+            <div class="col-md-1">
+                @using (Html.BeginForm("Delete", "AutomaticTest", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" class="btn btn-danger" value="@KTraining.Resources.Views.Common.Delete" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+<link href="~/Content/Styles/AutomaticTest.css" rel="stylesheet" />

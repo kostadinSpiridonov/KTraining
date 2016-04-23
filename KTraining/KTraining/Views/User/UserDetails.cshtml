@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNet.Identity
+@model KTraining.Models.UserProfileViewModel
+@{
+    ViewBag.Title = "Details";
+}
+<h2>@Model.FirstName @Model.SecondName @Model.LastName</h2>
+<div class="row">
+    <hr />
+    <div class="col-md-12">
+        <h3 class="col-md-12">@KTraining.Resources.Views.Common.Details</h3>
+        <br />
+        <dl class="dl-horizontal">
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="field-detail">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd class="field-detail">
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd class="field-detail">
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd class="field-detail">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.Skype)
+            </dt>
+            <dd class="field-detail">
+                @Html.DisplayFor(model => model.Skype)
+            </dd>
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.Role)
+            </dt>
+            <dd class="field-detail">
+                @Html.DisplayFor(model => model.Role)
+            </dd>
+            <dt class="field-detail">
+                @Html.DisplayNameFor(model => model.AboutMe)
+            </dt>
+            <dd class="field-detail">
+                @Html.Raw(Model.AboutMe)
+            </dd>
+            @if (User.Identity.GetUserId() == Model.Id)
+            {
+                <dd class="field-detail">
+                    <a href="/User/UserDetailsEdit">@KTraining.Resources.Views.Common.Edit</a>
+                </dd>
+            }
+        </dl>
+    </div>
+    <div class="col-md-12">
+        @if (Model.Role == "Ученик"||Model.Role=="Student")
+        {
+            <h3>@KTraining.Resources.Views.Course.CompletedCourses</h3>
+        }
+        else if (Model.Role == "Ръководител"||Model.Role=="Leader")
+        {
+            <h3>@KTraining.Resources.Views.Common.Courses</h3>
+        }
+        @if (Model.CompleteCourses != null)
+        {
+            if (Model.CompleteCourses.Count > 0)
+            {
+                <ol type="1">
+                    @foreach (var item in Model.CompleteCourses)
+                    {
+                        <li class="font-size-18">
+                            <a href="/CourseDetails/Details/@item.Id">
+                                @item.Name
+                            </a>
+                        </li>
+                    }
+                </ol>
+            }
+            else
+            {
+                <p>@KTraining.Resources.Views.Common.NotAvailable.</p>
+            }
+        }
+
+    </div>
+    @if (Model.Role == "Ученик"||Model.Role=="Student")
+    {
+        <div class="col-md-12">
+
+            <h3>@KTraining.Resources.Views.Course.CompletedLevels</h3>
+            <br />
+            @if(Model.CourseLevels.Count>0)
+            { 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4 row">
+                        @KTraining.Resources.Views.Course.CourseN
+                    </div>
+                    <div class="col-md-8 ">
+                        @KTraining.Resources.Views.Course.Level
+                    </div>
+
+                </div>
+                @foreach (var item in @Model.CourseLevels)
+                {
+                    <div class="col-md-12">
+                        <hr />
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="col-md-4">
+                            <a href="/CourseDetails/Details/@item.CourseId"> <h4>@item.CourseName</h4></a>
+                        </div>
+                        <div class="col-md-8 row">
+                            @foreach (var item1 in item.Levels)
+                            {
+                                <div class="col-md-12">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="/CourseLevel/Details/@item1.Id"> <h5>@item1.Name</h5></a>
+                                    }
+                                    else
+                                    {
+                                        <h5>@item1.Name</h5>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            }
+            else
+            {
+                <p>@KTraining.Resources.Views.Common.NotAvailable</p>
+            }
+
+        </div>
+    }
+</div>
+<link href="~/Content/Styles/User.css" rel="stylesheet" />

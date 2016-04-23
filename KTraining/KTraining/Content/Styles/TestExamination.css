@@ -1,0 +1,38 @@
+﻿.errors{
+    color:red;
+}
+.course-panel{
+    padding:5px;
+}
+.courses{
+    margin:10px;
+}
+.select-course-btn{
+    zoom:1.5;
+}
+
+.overflow{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.margin-top-text{
+    margin-top:8px;
+}
+.inner-test-panel{
+    margin:5px;
+}
+
+.padding-left-2{
+    padding-left:2px;
+
+}
+.padding-left-0{
+    padding-left:0px;
+}
+.test-panel{
+    margin:10px;
+}
+.row-override{
+    margin:0px;
+}

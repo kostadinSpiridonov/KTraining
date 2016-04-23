@@ -1,0 +1,20 @@
+﻿@model KTraining.Models.UploadImagesForCloseAnswer
+<link href="~/Content/fileinput.css" rel="stylesheet" />
+<script src="~/Scripts/fileinput.js"></script>
+@using (Html.BeginForm("UploadForCloseAnswer", "Image", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @KTraining.Resources.Views.Common.ChoosePic.
+        <input type="file" name="Images" class="fiele_upload2" formenctype="multipart/form-data" multiple />
+        <input type="hidden" value="@Model.QuestionId" name="QuestionId" />
+        <input type="hidden" value="@Model.AnswerId" name="AnswerId" />
+    </div>
+}
+<script type="text/javascript">
+    $(".fiele_upload2").fileinput({
+        showCaption: false, allowedFileExtensions: ["jpg", "gif", "png"], browseLabel: "@KTraining.Resources.Views.Common.Choose",
+        removeLabel: "@KTraining.Resources.Views.Common.Remove",
+        uploadLabel: "@KTraining.Resources.Views.Common.Upload"
+    });
+</script>
